@@ -1,0 +1,19 @@
+{
+    "authors": [ "E5R Development Team" ],
+    "description": "Authentication and Authorization component for E5R Framework",
+    "version": "1.0.0-*",
+    "exclude": [ ],
+    "packExclude": [
+        "**.kproj",
+        "**.user",
+        "**.vspscc"
+    ],
+    "dependencies": {
+        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta2"
+    },
+    "commands": {},
+    "frameworks": {
+        "aspnet50": { },
+        "aspnetcore50": {}
+    }
+}

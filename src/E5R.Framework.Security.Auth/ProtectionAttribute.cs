@@ -9,9 +9,6 @@ namespace E5R.Framework.Security.Auth
         private readonly ProtectionLevel _protectionLevel;
         private readonly string[] _requiredPermissions;
 
-        [Activate]
-        public IAuthorizationService _authorizationService { get; set; }
-
         public ProtectionAttribute(ProtectionLevel protectionLevel, string[] requiredPermissions = null)
         {
             if(protectionLevel != ProtectionLevel.Private && requiredPermissions != null)
@@ -28,15 +25,19 @@ namespace E5R.Framework.Security.Auth
             _requiredPermissions = requiredPermissions;
         }
 
-        internal bool Allowed(IAuthorizationService authorizationService)
+        internal bool Allowed(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
         {
             if (_protectionLevel == ProtectionLevel.Public)
             {
                 return true;
             }
 
-            // TODO: Implements
-            return false;
+            if(_protectionLevel == ProtectionLevel.Protected && authenticationService.IsAuthenticated)
+            {
+                return true;
+            }
+
+            return authorizationService.HasRequiredPermissions(_requiredPermissions);
         }
     }
 }

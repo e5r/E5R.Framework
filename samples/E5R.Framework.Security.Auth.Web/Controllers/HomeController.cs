@@ -17,9 +17,9 @@ namespace E5R.Framework.Security.Auth.Web.Controllers
         }
 
         [Protection(ProtectionLevel.Protected)]
-        public IActionResult ProtectedPage()
+        public string ProtectedPage()
         {
-            return View();
+            return "ProtectedPage";
         }
 
         [Protection(ProtectionLevel.Private, new[]
@@ -27,9 +27,15 @@ namespace E5R.Framework.Security.Auth.Web.Controllers
             "namespace.sample.permission1",
         
          })]
-        public IActionResult PrivatePage()
+        public string PrivatePage()
         {
-            return View();
+            return "PrivatePage";
+        }
+
+        [Protection(ProtectionLevel.Private, new[] { "permission1", "permission5", "permission3"})]
+        public string PrivatePageAllowed()
+        {
+            return "PrivatePageAllowed";
         }
     }
 }

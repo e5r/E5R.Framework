@@ -16,6 +16,9 @@ namespace E5R.Framework.Security.Auth
 
             var protection = protectionAttributes.FirstOrDefault();
 
+            var authenticationService = context.HttpContext?.RequestServices?
+                .GetRequiredService<IAuthenticationService>();
+
             var authorizationService = context.HttpContext?.RequestServices?
                 .GetRequiredService<IAuthorizationService>();
 
@@ -24,7 +27,7 @@ namespace E5R.Framework.Security.Auth
                 return;
             }
 
-            if (protection != null && protection.Allowed(authorizationService))
+            if (protection != null && protection.Allowed(authenticationService, authorizationService))
             {
                 return;
             }

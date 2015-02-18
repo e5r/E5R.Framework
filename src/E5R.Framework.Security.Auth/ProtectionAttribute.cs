@@ -25,7 +25,7 @@ namespace E5R.Framework.Security.Auth
             _requiredPermissions = requiredPermissions;
         }
 
-        internal bool Allowed(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
+        public bool Allowed(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
         {
             if (_protectionLevel == ProtectionLevel.Public)
             {

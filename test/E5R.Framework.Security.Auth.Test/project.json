@@ -11,6 +11,7 @@
     "dependencies": {
         "xunit": "2.0.0-rc2-*",
         "xunit.runner.aspnet": "2.0.0-rc2-*",
+        "Moq": "4.2.1502.911",
         "E5R.Framework.Security.Auth": ""
     },
     "commands": {

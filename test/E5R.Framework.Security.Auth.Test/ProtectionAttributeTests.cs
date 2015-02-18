@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Moq;
 
 namespace E5R.Framework.Security.Auth.Test
 {
@@ -50,80 +51,68 @@ namespace E5R.Framework.Security.Auth.Test
         }
 
         [Fact]
-        public void Allowed_Not_Accesses_IAuthenticationService_If_ProtectionLevel_Is_Public()
+        public void Allowed_Not_Accesses_IAuthenticationService_and_IAuthorizationService_If_ProtectionLevel_Is_Public()
         {
             // Arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            var mockAuthorizationService = new Mock<IAuthorizationService>();
+            var protectionAttribute = new ProtectionAttribute(ProtectionLevel.Public);
 
             // Act
-            throw new NotImplementedException();
+            protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
-        }
-
-        [Fact]
-        public void Allowed_Not_Accesses_IAuthorizationService_If_ProtectionLevel_Is_Public()
-        {
-            // Arrange
-
-            // Act
-            throw new NotImplementedException();
-
-            // Assert
+            mockAuthenticationService.Verify(service => service.IsAuthenticated, Times.Never());
+            mockAuthorizationService.Verify(service => service.AllowUnsignedAction, Times.Never());
+            mockAuthorizationService.Verify(service => service.HasRequiredPermissions(new string[]{}), Times.Never());
         }
 
         [Fact]
         public void Allowed_Not_Accesses_IAuthorizationService_If_ProtectionLevel_Is_Protected()
         {
             // Arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            var mockAuthorizationService = new Mock<IAuthorizationService>();
+            var protectionAttribute = new ProtectionAttribute(ProtectionLevel.Protected);
 
             // Act
-            throw new NotImplementedException();
+            protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
+            mockAuthorizationService.Verify(service => service.AllowUnsignedAction, Times.Never());
+            mockAuthorizationService.Verify(service => service.HasRequiredPermissions(new string[]{}), Times.Never());
         }
 
         [Fact]
         public void Allowed_Accesses_IAuthenticationService_If_ProtectionLevel_Is_Protected()
         {
             // Arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            var mockAuthorizationService = new Mock<IAuthorizationService>();
+            var protectionAttribute = new ProtectionAttribute(ProtectionLevel.Protected);
 
             // Act
-            throw new NotImplementedException();
+            protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
+            mockAuthenticationService.Verify(service => service.IsAuthenticated, Times.AtLeastOnce());
         }
 
         [Fact]
         public void Not_Allowed_If_Not_Authenticated_In_ProtectionLevel_Protected()
         {
             // Arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            var mockAuthorizationService = new Mock<IAuthorizationService>();
+            var protectionAttribute = new ProtectionAttribute(ProtectionLevel.Protected);
+
+            mockAuthenticationService.Setup(service => service.IsAuthenticated).Returns(false);
 
             // Act
-            throw new NotImplementedException();
+            var result = protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
-        }
-
-        [Fact]
-        public void Not_Allowed_If_Does_Not_Contain_All_Permissions_In_ProtectionLevel_Private()
-        {
-            // Arrange
-
-            // Act
-            throw new NotImplementedException();
-
-            // Assert
-        }
-
-        [Fact]
-        public void Allowed_If_Contain_All_Permissions_In_ProtectionLevel_Private()
-        {
-            // Arrange
-
-            // Act
-            throw new NotImplementedException();
-
-            // Assert
+            Assert.Equal(false, result);
         }
     }
 }

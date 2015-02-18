@@ -8,6 +8,7 @@ namespace Microsoft.Framework.DependencyInjection
         public static IServiceCollection AddE5RAuth(this IServiceCollection services)
         {
             services.TryAdd(E5RAuthServices.GetDefaultServices());
+            
             return services;
         }
 

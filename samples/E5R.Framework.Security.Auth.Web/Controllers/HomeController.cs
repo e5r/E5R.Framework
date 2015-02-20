@@ -5,7 +5,7 @@ namespace E5R.Framework.Security.Auth.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [Protection(ProtectionLevel.Public)]
+        [Public]
         public IActionResult Index()
         {
             return View();
@@ -16,23 +16,22 @@ namespace E5R.Framework.Security.Auth.Web.Controllers
             return "Nothing";
         }
 
-        [Protection(ProtectionLevel.Protected)]
+        [Protected]
         public string ProtectedPage()
         {
             return "ProtectedPage";
         }
 
-        [Protection(ProtectionLevel.Private, new[]
-        {   "namespace.sample.permission0",
-            "namespace.sample.permission1",
-        
+        [Private(requiredPermissions: new[] {
+           "namespace.sample.permission0",
+           "namespace.sample.permission1"
          })]
         public string PrivatePage()
         {
             return "PrivatePage";
         }
 
-        [Protection(ProtectionLevel.Private, new[] { "permission1", "permission5", "permission3"})]
+        [Private(new[] { "permission1", "permission5", "permission3"})]
         public string PrivatePageAllowed()
         {
             return "PrivatePageAllowed";

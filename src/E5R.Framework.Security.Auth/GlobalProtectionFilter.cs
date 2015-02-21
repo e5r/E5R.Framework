@@ -11,7 +11,9 @@ namespace E5R.Framework.Security.Auth
         public override void OnAuthorization(AuthorizationContext context)
         {
             var protectionAttributes = context.ActionDescriptor?.FilterDescriptors?
-                .Where(where => where.Filter.GetType().IsSubclassOf(typeof(ProtectionAttribute)))
+                .Where(where => 
+                    where.Filter.GetType() == typeof(ProtectionAttribute) ||
+                    where.Filter.GetType().IsSubclassOf(typeof(ProtectionAttribute)))
                 .Select(select => (ProtectionAttribute)select.Filter);
 
             var protection = protectionAttributes.FirstOrDefault();

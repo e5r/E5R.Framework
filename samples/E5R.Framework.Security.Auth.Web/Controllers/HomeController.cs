@@ -11,6 +11,12 @@ namespace E5R.Framework.Security.Auth.Web.Controllers
             return View();
         }
 
+        [Protection(ProtectionLevel.Public)]
+        public IActionResult Index2()
+        {
+            return View("Index");
+        }
+
         public string Nothing()
         {
             return "Nothing";

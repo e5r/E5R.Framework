@@ -1,9 +1,31 @@
-﻿using System;
+﻿using Microsoft.AspNet.Http;
+using System;
 
 namespace E5R.Framework.Security.Auth
 {
     public interface IAuthenticationService
     {
-        bool IsAuthenticated { get; }
+        /// <summary>
+        /// Tells you whether a credential authentic logged
+        /// 
+        /// TODO: Necessary to differentiate applications and user?
+        /// </summary>
+        bool IsAuthenticCredential { get; }
+
+        /// <summary>
+        /// Validate a Application Token
+        /// </summary>
+        /// <param name="applicationToken">Application Token</param>
+        /// <param name="context">HTTP context</param>
+        /// <returns>True if valid</returns>
+        bool validateApplicationToken(string applicationToken, HttpContext context);
+        
+        /// <summary>
+        /// Create a new Session for Application
+        /// </summary>
+        /// <param name="applicationToken">Application Token</param>
+        /// <param name="context">HTTP context</param>
+        /// <returns>Application Session Token</returns>
+        string createApplicationSession(string applicationToken, HttpContext context);
     }
 }

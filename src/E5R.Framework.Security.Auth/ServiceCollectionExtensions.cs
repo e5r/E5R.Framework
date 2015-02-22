@@ -12,13 +12,18 @@ namespace Microsoft.Framework.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection ConfigureE5RAuth(this IServiceCollection services)
+        public static IServiceCollection ConfigureE5RAuthClient(this IServiceCollection services)
         {
             services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(new GlobalProtectionFilter());
             });
 
+            return services;
+        }
+
+        public static IServiceCollection ConfigureE5RAuthServer(this IServiceCollection services)
+        {
             return services;
         }
     }

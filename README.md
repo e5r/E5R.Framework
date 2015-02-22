@@ -3,6 +3,6 @@ E5R Framework for .NET components. Confira a documentação na [Wiki](https://gi
 
 # DevTools
 
-[Visual Studio 2015](http://www.visualstudio.com/pt-br/downloads/visual-studio-2015-downloads-vs)
+* [Visual Studio 2015](http://www.visualstudio.com/pt-br/downloads/visual-studio-2015-downloads-vs)
 
-[OmniSharp - Cross platform .NET development](http://www.omnisharp.net/)
+* [OmniSharp - Cross platform .NET development](http://www.omnisharp.net/)

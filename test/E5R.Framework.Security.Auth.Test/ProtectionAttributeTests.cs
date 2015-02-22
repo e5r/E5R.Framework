@@ -62,7 +62,7 @@ namespace E5R.Framework.Security.Auth.Test
             protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
-            mockAuthenticationService.Verify(service => service.IsAuthenticated, Times.Never());
+            mockAuthenticationService.Verify(service => service.IsAuthenticCredential, Times.Never());
             mockAuthorizationService.Verify(service => service.AllowUnsignedAction, Times.Never());
             mockAuthorizationService.Verify(service => service.HasRequiredPermissions(new string[]{}), Times.Never());
         }
@@ -95,7 +95,7 @@ namespace E5R.Framework.Security.Auth.Test
             protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);
 
             // Assert
-            mockAuthenticationService.Verify(service => service.IsAuthenticated, Times.AtLeastOnce());
+            mockAuthenticationService.Verify(service => service.IsAuthenticCredential, Times.AtLeastOnce());
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace E5R.Framework.Security.Auth.Test
             var mockAuthorizationService = new Mock<IAuthorizationService>();
             var protectionAttribute = new ProtectionAttribute(ProtectionLevel.Protected);
 
-            mockAuthenticationService.Setup(service => service.IsAuthenticated).Returns(false);
+            mockAuthenticationService.Setup(service => service.IsAuthenticCredential).Returns(false);
 
             // Act
             var result = protectionAttribute.Allowed(mockAuthenticationService.Object, mockAuthorizationService.Object);

@@ -9,6 +9,7 @@ namespace AuthenticationServer
         {
             services.AddE5RAuth();
             services.AddMvc();
+            services.ConfigureE5RAuthServer();
         }
 
         public void Configure(IApplicationBuilder app)

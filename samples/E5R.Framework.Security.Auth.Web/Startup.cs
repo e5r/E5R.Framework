@@ -8,7 +8,7 @@ public class Startup
     {
         services.AddMvc();
         services.AddE5RAuth();
-        services.ConfigureE5RAuth();
+        services.ConfigureE5RAuthClient();
     }
 
     public void Configure(IApplicationBuilder app)

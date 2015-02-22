@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.OptionsModel;
 using Microsoft.Framework.DependencyInjection;
-using System;
 using System.Linq;
 
 namespace E5R.Framework.Security.Auth

@@ -12,9 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{
 		.gitignore = .gitignore
 		global.json = global.json
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 	ProjectSection(FolderGlobals) = preProject
+		Documents_2GitHub_2E5R_1Framework_2global_1json__JSONSchema = http://json.schemastore.org/global
 		global_1json__JSONSchema = http://json.schemastore.org/global
 	EndProjectSection
 EndProject

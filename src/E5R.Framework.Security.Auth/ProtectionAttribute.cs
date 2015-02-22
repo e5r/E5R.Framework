@@ -32,7 +32,7 @@ namespace E5R.Framework.Security.Auth
                 return true;
             }
 
-            if(_protectionLevel == ProtectionLevel.Protected && authenticationService.IsAuthenticated)
+            if(_protectionLevel == ProtectionLevel.Protected && authenticationService.IsAuthenticCredential)
             {
                 return true;
             }

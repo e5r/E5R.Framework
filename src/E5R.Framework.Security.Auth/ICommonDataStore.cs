@@ -1,5 +1,4 @@
-﻿using E5R.Framework.Security.Auth.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace E5R.Framework.Security.Auth
@@ -8,12 +7,12 @@ namespace E5R.Framework.Security.Auth
     {
         T Create(T data);
 
-        IEnumerable<T> GetAll();
+        T Update(T data);
 
-        T GetById(AuthId id);
+        ICollection<T> GetAll();
 
-        bool Delete(T data);
+        T GetOne(AuthId id);
 
-        T Save(T data);
+        bool Remove(T data);
     }
 }

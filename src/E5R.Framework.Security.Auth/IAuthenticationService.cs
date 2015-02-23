@@ -1,4 +1,4 @@
-﻿using E5R.Framework.Security.Auth.Model;
+﻿using E5R.Framework.Security.Auth.Models;
 using Microsoft.AspNet.Http;
 using System;
 

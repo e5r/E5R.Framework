@@ -1,5 +1,5 @@
 ﻿using System;
-using E5R.Framework.Security.Auth.Model;
+using E5R.Framework.Security.Auth.Models;
 using Microsoft.AspNet.Http;
 
 namespace E5R.Framework.Security.Auth

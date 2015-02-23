@@ -1,10 +1,18 @@
 ﻿using System;
+using E5R.Framework.Security.Auth.Model;
 using Microsoft.AspNet.Http;
 
 namespace E5R.Framework.Security.Auth
 {
     public class DefaultAuthenticationService : IAuthenticationService
     {
+        private readonly ICommonDataStore<Application> _applicationStore;
+
+        public DefaultAuthenticationService(ICommonDataStore<Application> applicationStore)
+        {
+            _applicationStore = applicationStore;
+        }
+
         bool IAuthenticationService.IsAuthenticCredential
         {
             get
@@ -13,12 +21,17 @@ namespace E5R.Framework.Security.Auth
             }
         }
 
-        string IAuthenticationService.createApplicationSession(string applicationToken, HttpContext context)
+        Application IAuthenticationService.CreateApplication(Application application, HttpContext context)
         {
             throw new NotImplementedException();
         }
 
-        bool IAuthenticationService.validateApplicationToken(string applicationToken, HttpContext context)
+        string IAuthenticationService.CreateApplicationSession(string applicationToken, HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IAuthenticationService.ValidateApplicationToken(string applicationToken, HttpContext context)
         {
             if(applicationToken == "MyValidAppToken")
             {

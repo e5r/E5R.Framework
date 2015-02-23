@@ -26,7 +26,7 @@ namespace E5R.Framework.Security.Auth
 
             var applicationToken = context.Request.Headers.Get(HeaderApplicationToken);
 
-            if (!authenticationService.validateApplicationToken(applicationToken, context))
+            if (!authenticationService.ValidateApplicationToken(applicationToken, context))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return;

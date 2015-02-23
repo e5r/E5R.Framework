@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Http;
+﻿using E5R.Framework.Security.Auth.Model;
+using Microsoft.AspNet.Http;
 using System;
 
 namespace E5R.Framework.Security.Auth
@@ -18,7 +19,7 @@ namespace E5R.Framework.Security.Auth
         /// <param name="applicationToken">Application Token</param>
         /// <param name="context">HTTP context</param>
         /// <returns>True if valid</returns>
-        bool validateApplicationToken(string applicationToken, HttpContext context);
+        bool ValidateApplicationToken(string applicationToken, HttpContext context);
         
         /// <summary>
         /// Create a new Session for Application
@@ -26,6 +27,8 @@ namespace E5R.Framework.Security.Auth
         /// <param name="applicationToken">Application Token</param>
         /// <param name="context">HTTP context</param>
         /// <returns>Application Session Token</returns>
-        string createApplicationSession(string applicationToken, HttpContext context);
+        string CreateApplicationSession(string applicationToken, HttpContext context);
+
+        Application CreateApplication(Application application, HttpContext context);
     }
 }

@@ -1,5 +1,7 @@
 # Authentication Server Notes
 
+## Flow
+
 ### Request 1
 ```http
 POST /session HTTP/1.1
@@ -42,7 +44,7 @@ X-Auth-OCNonce: XXXXXXXXXX
 
 Aqui em `X-Auth-OCNonce` é informada a ordem de concatenação que o servidor espera
 receber no campo `X-Auth-CNonce` para as próximas requisições.
-Esse campo é um HASH de combinações possíveis, onde o cliente precisará __deduzí-lo__ através da técnica de tentativa e erro, 
+Esse campo é um HASH de combinações possíveis, onde o cliente precisará __deduzí-lo__ através da técnica de tentativa e erro,
 Ex:
   * SHA(AppID:AppPrivateKey:AppInstanceHost/IP:ID-ORDER-1), ou
   * SHA(AppID:AppPrivateKey:AppInstanceHost/IP:ID-ORDER-2), ou
@@ -65,4 +67,36 @@ X-Auth-AppInstanceID: XXXXXXXXXX
 X-Auth-SealedSessionToken: XXXXXXXXXX
 X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
 
+```
+
+## Data model
+
+```
+Application {
+    'Token': 'string',
+    'Name': 'string',
+    'PrivateKey': 'string'
+}
+
+ApplicationInstance {
+    'Token': 'string',
+    'Application': 'Application.Token',
+    'Host': 'string'
+}
+
+SessionNonceOrders [
+    SessionNonceOrder {
+        'Id': 'string',
+        'Application': 'Application.Token',
+        'Order': 'string'
+    }
+]
+
+Session {
+    'Token': 'string',
+    'Instance': 'ApplicationInstance.Token',
+    'Nonce': 'string',
+    'NonceConfirmed1': 'bool',
+    'NonceConfirmed2': 'bool'
+}
 ```

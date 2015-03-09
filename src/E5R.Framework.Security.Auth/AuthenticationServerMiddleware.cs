@@ -16,23 +16,26 @@ namespace E5R.Framework.Security.Auth
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, IAuthenticationService authenticationService)
+        public async Task Invoke(HttpContext context/*, IAuthenticationService authenticationService*/)
         {
-            if (!context.Request.Headers.ContainsKey(HeaderApplicationToken))
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                return;
-            }
+            context.Response.ContentType = "text/html";
+            await context.Response.WriteAsync("<h1>E5R.AuthenticationServer not implemented!</h1>");
 
-            var applicationToken = context.Request.Headers.Get(HeaderApplicationToken);
-
-            if (!authenticationService.ValidateApplicationToken(applicationToken, context))
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                return;
-            }
-
-            await _next(context);
+            // if (!context.Request.Headers.ContainsKey(HeaderApplicationToken))
+            // {
+            //     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            //     return;
+            // }
+            //
+            // var applicationToken = context.Request.Headers.Get(HeaderApplicationToken);
+            //
+            // if (!authenticationService.ValidateApplicationToken(applicationToken, context))
+            // {
+            //     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            //     return;
+            // }
+            //
+            // await _next(context);
         }
     }
 }

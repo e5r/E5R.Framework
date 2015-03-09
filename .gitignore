@@ -5,3 +5,4 @@ artifacts/
 
 *.user
 *.sublime-workspace
+debugSettings.json

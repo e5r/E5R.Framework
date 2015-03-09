@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Mvc;
 using Microsoft.Framework.DependencyInjection;
 using System.Linq;
+using System.Reflection;
 
 namespace E5R.Framework.Security.Auth
 {
@@ -11,7 +12,7 @@ namespace E5R.Framework.Security.Auth
             var protectionAttributes = context.ActionDescriptor?.FilterDescriptors?
                 .Where(where => 
                     where.Filter.GetType() == typeof(ProtectionAttribute) ||
-                    where.Filter.GetType().IsSubclassOf(typeof(ProtectionAttribute)))
+                    where.Filter.GetType().GetTypeInfo().IsSubclassOf(typeof(ProtectionAttribute)))
                 .Select(select => (ProtectionAttribute)select.Filter);
 
             var protection = protectionAttributes.FirstOrDefault();

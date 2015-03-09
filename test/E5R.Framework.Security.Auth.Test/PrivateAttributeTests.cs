@@ -1,4 +1,5 @@
 using Xunit;
+using System.Reflection;
 
 namespace E5R.Framework.Security.Auth.Tests
 {
@@ -12,7 +13,7 @@ namespace E5R.Framework.Security.Auth.Tests
             var childType = typeof(PrivateAttribute);
 
             // Act
-            var result = childType.IsSubclassOf(parentType);
+            var result = childType.GetTypeInfo().IsSubclassOf(parentType);
         
             // Assert
             Assert.True(result);

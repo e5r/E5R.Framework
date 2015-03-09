@@ -9,12 +9,15 @@
         "**.vspscc"
     ],
     "dependencies": {
-        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3",
-        "System.Security.Cryptography.Hashing": "4.0.0-beta-*"
+        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3"
     },
     "commands": { },
     "frameworks": {
         "aspnet50": { },
-        "aspnetcore50": { }
+        "aspnetcore50": {
+            "System.Security.Cryptography.Hashing": "4.0.0-beta-*",
+            "System.Text.RegularExpressions": "4.0.10-beta-*",
+            "System.Text.Encoding": "4.0.10-beta-*"
+        }
     }
 }

@@ -1,4 +1,3 @@
-using E5R.Framework.Security.Auth;
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.DependencyInjection;
 
@@ -14,6 +13,12 @@ public class Startup
     public void Configure(IApplicationBuilder app)
     {
         app.UseErrorPage();
-        app.UseMvc();
+        app.UseMvc(routes =>
+        {
+            routes.MapRoute(
+                name: "default",
+                template: "{controller}/{action}/{id?}",
+                defaults: new { controller = "home", action = "index" });
+        });
     }
 }

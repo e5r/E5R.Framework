@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22512.0
+VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Web", "samples\E5R.Framework.Security.Auth.Web\E5R.Framework.Security.Auth.Web.kproj", "{7B27E284-E04B-482A-972F-1F23C8F80A79}"
 EndProject
@@ -10,8 +10,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{E7ED6AE8-E89C-4D95-B5FB-250F794C4B76}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build.cmd = build.cmd
+		build.ps1 = build.ps1
 		global.json = global.json
 		LICENSE = LICENSE
+		makefile.shade = makefile.shade
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
@@ -29,6 +32,12 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Test", "test\E5R.Framework.Security.Auth.Test\E5R.Framework.Security.Auth.Test.kproj", "{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthenticationServer", "samples\AuthenticationServer\AuthenticationServer.kproj", "{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".e5r", ".e5r", "{3B809C45-7EB3-4037-9238-22169D24988A}"
+	ProjectSection(SolutionItems) = preProject
+		.e5r\tech = .e5r\tech
+		.e5r\version = .e5r\version
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,5 +70,6 @@ Global
 		{7B836CD9-6468-4B46-919A-91E21D917307} = {D30F36C0-E368-4889-9070-5862C21C093E}
 		{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF} = {FB48C03D-D86F-4756-A861-A9F156923617}
 		{93367FB1-4F2C-491A-8902-7FA0FF87B2BA} = {0D04485E-DDD3-41C5-BDBD-E30B91CC4884}
+		{3B809C45-7EB3-4037-9238-22169D24988A} = {E7ED6AE8-E89C-4D95-B5FB-250F794C4B76}
 	EndGlobalSection
 EndGlobal

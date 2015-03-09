@@ -1,5 +1,4 @@
-﻿using E5R.Framework.Security.Auth;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Mvc;
 
 namespace E5R.Framework.Security.Auth.Web.Controllers
 {

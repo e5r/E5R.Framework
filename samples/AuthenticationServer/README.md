@@ -96,7 +96,7 @@ X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
         "Token":            "type.string",
         "AppInstance":      "type.ref(AppInstance.Id)",
         "Nonce":            "type.string",
-        "NonceValidated":   "type.bool"
+        "NonceConfirmed":   "type.bool"
     }
 }
 ```

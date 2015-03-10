@@ -55,9 +55,9 @@ Quando encontrar o HASH correspondente o cliente saberá qual a ordem esperada. 
 Esses IDs de ordem têm uma configuração protocolada entre o cliente e servidor (pode ser global: para todos os clientes do servidor, ou específica: onde cada cliente ao ser cadastrado recebe sua configuração).
 
 Ex:
-  * ID-ORDER-1: SHA(AppID:AppPrivateKey:AppInstanceHost/IP:X-Auth-SealedSessionToken:X-Auth-Nonce)
-  * ID-ORDER-2: SHA(AppInstanceHost/IP:AppID:X-Auth-SealedSessionToken:AppPrivateKey:X-Auth-Nonce)
-  * ID-ORDER-X: SHA(X-Auth-Nonce:AppID:AppPrivateKey:X-Auth-SealedSessionToken:AppInstanceHost/IP)
+  * ID-ORDER-1: SHA(AppID:AppPrivateKey:AppInstanceHost/IP:X-Auth-SealedAccessToken:X-Auth-Nonce)
+  * ID-ORDER-2: SHA(AppInstanceHost/IP:AppID:X-Auth-SealedAccessToken:AppPrivateKey:X-Auth-Nonce)
+  * ID-ORDER-X: SHA(X-Auth-Nonce:AppID:AppPrivateKey:X-Auth-SealedAccessToken:AppInstanceHost/IP)
 
 ### Every next requests
 ```http
@@ -89,7 +89,7 @@ X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
     "AppNonceOrder": {
         "Id":           "type.string",
         "App":          "type.ref(App.Id)",
-        "Order":        "type.string"
+        "Template":     "type.string"
     },
 
     "AccessToken": {

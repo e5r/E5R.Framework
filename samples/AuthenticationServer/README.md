@@ -75,29 +75,28 @@ X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
 ```json
 {
     "App": {
-        "Id":           "type.string",
-        "Name":         "type.string",
-        "PrivateKey":   "type.string"
+        "Id":               "type.string",
+        "Name":             "type.string",
+        "PrivateKey":       "type.string"
     },
 
     "AppInstance": {
-        "Id":           "type.string",
-        "App":          "type.ref(App.Id)",
-        "Host":         "type.string"
+        "Id":               "type.string",
+        "App":              "type.ref(App.Id)",
+        "Host":             "type.string"
     },
 
     "AppNonceOrder": {
-        "Id":           "type.string",
-        "App":          "type.ref(App.Id)",
-        "Template":     "type.string"
+        "Id":               "type.string",
+        "App":              "type.ref(App.Id)",
+        "Template":         "type.string"
     },
 
     "AccessToken": {
-        "Token":        "type.string",
-        "AppInstance":  "type.ref(AppInstance.Id)",
-        "Nonce":        "type.string",
-        "NonceConf1":   "type.bool",
-        "NonceConf2":   "type.bool"
+        "Token":            "type.string",
+        "AppInstance":      "type.ref(AppInstance.Id)",
+        "Nonce":            "type.string",
+        "NonceValidated":   "type.bool"
     }
 }
 ```

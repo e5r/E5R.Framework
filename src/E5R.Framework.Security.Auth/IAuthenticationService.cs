@@ -20,15 +20,5 @@ namespace E5R.Framework.Security.Auth
         /// <param name="context">HTTP context</param>
         /// <returns>True if valid</returns>
         bool ValidateApplicationToken(string applicationToken, HttpContext context);
-        
-        /// <summary>
-        /// Create a new Session for Application
-        /// </summary>
-        /// <param name="applicationToken">Application Token</param>
-        /// <param name="context">HTTP context</param>
-        /// <returns>Application Session Token</returns>
-        string CreateApplicationSession(string applicationToken, HttpContext context);
-
-        Application CreateApplication(Application application, HttpContext context);
     }
 }

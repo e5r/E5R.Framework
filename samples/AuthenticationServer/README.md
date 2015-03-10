@@ -1,6 +1,6 @@
 # Authentication Server Notes
 
-## Flow
+## Flux
 
 ### Request 1
 ```http
@@ -13,8 +13,8 @@ X-Auth-Seal: SHA(AppID:AppPrivateKey:AppInstanceHost/IP)
 
 ### Response 1
 ```http
-HTTP/1.1 201 Session Created
-X-Auth-SessionToken: XXXXXXXXXX
+HTTP/1.1 201 Created
+X-Auth-AccessToken: XXXXXXXXXX
 X-Auth-Nonce: XXXXXXXXXX
 
 ```
@@ -24,7 +24,7 @@ X-Auth-Nonce: XXXXXXXXXX
 PUT /session HTTP/1.1
 Host: auth.site.com
 X-Auth-AppInstanceID: XXXXXXXXXX
-X-Auth-SessionToken: XXXXXXXXXX
+X-Auth-AccessToken: XXXXXXXXXX
 X-Auth-CNonce: SHA(AppID:AppPrivateKey:AppInstanceHost/IP:X-Auth-Nonce)
 
 ```
@@ -32,13 +32,13 @@ X-Auth-CNonce: SHA(AppID:AppPrivateKey:AppInstanceHost/IP:X-Auth-Nonce)
 
 ### Response 2
 ```http
-HTTP/1.1 201 Session Sealed
-X-Auth-SealedSessionToken: XXXXXXXXXX
+HTTP/1.1 202 Accepted
+X-Auth-SealedAccessToken: XXXXXXXXXX
 X-Auth-Nonce: XXXXXXXXXX
 X-Auth-OCNonce: XXXXXXXXXX
 
 ```
-> `X-Auth-OCNonce`: Order of CNonce
+> `X-Auth-Nonce` is new. `X-Auth-OCNonce`: Order of CNonce
 
 #### Note(pt-br):
 
@@ -61,42 +61,43 @@ Ex:
 
 ### Every next requests
 ```http
-PUT /session HTTP/1.1
+GET /resource HTTP/1.1
 Host: auth.site.com
 X-Auth-AppInstanceID: XXXXXXXXXX
-X-Auth-SealedSessionToken: XXXXXXXXXX
+X-Auth-AccessToken: XXXXXXXXXX
 X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
 
 ```
+> `X-Auth-AccessToken` is a `X-Auth-SealedAccessToken` from Response 2
 
 ## Data model
 
-```
-Application {
-    'Token': 'string',
-    'Name': 'string',
-    'PrivateKey': 'string'
-}
+```json
+{
+    "App": {
+        "Id":           "type.string",
+        "Name":         "type.string",
+        "PrivateKey":   "type.string"
+    },
 
-ApplicationInstance {
-    'Token': 'string',
-    'Application': 'Application.Token',
-    'Host': 'string'
-}
+    "AppInstance": {
+        "Id":           "type.string",
+        "App":          "type.ref(App.Id)",
+        "Host":         "type.string"
+    },
 
-SessionNonceOrders [
-    SessionNonceOrder {
-        'Id': 'string',
-        'Application': 'Application.Token',
-        'Order': 'string'
+    "AppNonceOrder": {
+        "Id":           "type.string",
+        "App":          "type.ref(App.Id)",
+        "Order":        "type.string"
+    },
+
+    "AccessToken": {
+        "Token":        "type.string",
+        "AppInstance":  "type.ref(AppInstance.Id)",
+        "Nonce":        "type.string",
+        "NonceConf1":   "type.bool",
+        "NonceConf2":   "type.bool"
     }
-]
-
-Session {
-    'Token': 'string',
-    'Instance': 'ApplicationInstance.Token',
-    'Nonce': 'string',
-    'NonceConfirmed1': 'bool',
-    'NonceConfirmed2': 'bool'
 }
 ```

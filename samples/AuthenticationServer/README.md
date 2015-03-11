@@ -64,11 +64,10 @@ Ex:
 GET /resource HTTP/1.1
 Host: auth.site.com
 X-Auth-AppInstanceID: XXXXXXXXXX
-X-Auth-AccessToken: XXXXXXXXXX
+X-Auth-SealedAccessToken: XXXXXXXXXX
 X-Auth-CNonce: SHA(ID-ORDER-X-VALUE)
 
 ```
-> `X-Auth-AccessToken` is a `X-Auth-SealedAccessToken` from Response 2
 
 ## Data model
 

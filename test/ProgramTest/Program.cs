@@ -13,7 +13,11 @@ namespace E5R.Framework.ProgramTest
 
             Console.WriteLine("\nnew App()");
             Console.WriteLine("------------------------------------------------");
-            var app = new App(){ Name= "My App", Description = "Application for tests!" };
+            var app = App.Create();
+            {
+                app.Name= "My App";
+                app.Description = "Application for tests!";
+            }
             Console.WriteLine(string.Format("App.Id:          {0}", app.Id));
             Console.WriteLine(string.Format("App.Name:        {0}", app.Name));
             Console.WriteLine(string.Format("App.Description: {0}", app.Description));
@@ -21,18 +25,34 @@ namespace E5R.Framework.ProgramTest
 
             Console.WriteLine("\n\nnew AppInstance()");
             Console.WriteLine("------------------------------------------------");
-            var appInstance = new AppInstance(app){ Host= "myhost.com" };
-            Console.WriteLine(string.Format("AppInstance.Id:   {0}", appInstance.Id));
-            Console.WriteLine(string.Format("AppInstance.App:  {0} ({1})", appInstance.App?.Name, appInstance.App?.Id));
-            Console.WriteLine(string.Format("AppInstance.Host: {0}", appInstance.Host));
+            var appInstance = AppInstance.Create(app);
+            {
+                appInstance.Host = "myhost.com";
+            }
+            Console.WriteLine(string.Format("AppInstance.Id:   {0}", appInstance?.Id));
+            Console.WriteLine(string.Format("AppInstance.App:  {0} ({1})", appInstance?.App?.Name, appInstance?.App?.Id));
+            Console.WriteLine(string.Format("AppInstance.Host: {0}", appInstance?.Host));
 
             Console.WriteLine("\n\nnew AccessToken()");
             Console.WriteLine("------------------------------------------------");
-            var accessToken = new AccessToken(){ Nonce = "CustomGeneratedNonceCode" };
+            var accessToken = AccessToken.Create(appInstance);
+            {
+                accessToken.Nonce = "CustomGeneratedNonceCode";
+            }
             Console.WriteLine(string.Format("AccessToken.Token:          {0}", accessToken.Token));
             Console.WriteLine(string.Format("AccessToken.AppInstance:    {0} ({1})", accessToken.AppInstance?.Id, accessToken.AppInstance?.Host));
             Console.WriteLine(string.Format("AccessToken.Nonce:          {0}", accessToken.Nonce));
             Console.WriteLine(string.Format("AccessToken.NonceConfirmed: {0}", accessToken.NonceConfirmed));
+
+            Console.WriteLine("\n\nnew AppNonceOrder()");
+            Console.WriteLine("------------------------------------------------");
+            var ppNonceOrder = AppNonceOrder.Create(app);
+            {
+                ppNonceOrder.Template = "{template}";
+            }
+            Console.WriteLine(string.Format("AppNonceOrder.Id:       {0}", ppNonceOrder?.Id));
+            Console.WriteLine(string.Format("AppNonceOrder.App:      {0} ({1})", ppNonceOrder?.App?.Name, ppNonceOrder?.App?.Id));
+            Console.WriteLine(string.Format("AppNonceOrder.Template: {0}", ppNonceOrder?.Template));
         }
     }
 }

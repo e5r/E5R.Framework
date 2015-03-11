@@ -9,15 +9,13 @@ namespace E5R.Framework.Security.Auth.Models
         public string Description { get; set; }
         public AuthToken PrivateKey { get; set; }
 
-        public App Create()
+        public static App Create()
         {
-            return new App();
+            return new App()
+            {
+                Id = new AuthId(),
+                PrivateKey = new AuthToken()
+            };
         }
-
-        // public App()
-        // {
-        //     Id = new AuthId();
-        //     PrivateKey = new AuthToken();
-        // }
     }
 }

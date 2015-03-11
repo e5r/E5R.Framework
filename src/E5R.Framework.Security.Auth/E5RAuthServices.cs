@@ -9,12 +9,19 @@ namespace E5R.Framework.Security.Auth
 {
     public class E5RAuthServices
     {
-        public static IEnumerable<IServiceDescriptor> GetDefaultServices()
+        public static IEnumerable<IServiceDescriptor> GetDefaultClientServices()
         {
             var describer = new ServiceDescriber();
 
             yield return describer.Singleton<IAuthenticationService, DefaultAuthenticationService>();
             yield return describer.Singleton<IAuthorizationService, DefaultAuthorizationService>();
+        }
+
+        public static IEnumerable<IServiceDescriptor> GetDefaultServerServices()
+        {
+            var describer = new ServiceDescriber();
+
+            yield return describer.Singleton<IAuthenticationService, DefaultAuthenticationService>();
         }
     }
 }

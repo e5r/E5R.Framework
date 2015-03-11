@@ -10,7 +10,7 @@ namespace Microsoft.Framework.DependencyInjection
     {
         public static IServiceCollection AddE5RAuth(this IServiceCollection services)
         {
-            services.TryAdd(E5RAuthServices.GetDefaultServices());
+            services.TryAdd(E5RAuthServices.GetDefaultClientServices());
 
             return services;
         }
@@ -27,6 +27,8 @@ namespace Microsoft.Framework.DependencyInjection
 
         public static IServiceCollection AddE5RAuthServer(this IServiceCollection services)
         {
+            services.TryAdd(E5RAuthServices.GetDefaultServerServices());
+            
             return services;
         }
     }

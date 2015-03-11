@@ -14,6 +14,7 @@
     "dependencies": {
         "E5R.Framework.Security.Auth": "",
         "Microsoft.AspNet.Hosting": "1.0.0-beta3",
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
         "Kestrel": "1.0.0-beta3",
         "Microsoft.AspNet.Server.IIS": "1.0.0-beta3"
     },

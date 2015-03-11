@@ -1,3 +1,6 @@
+// Copyright (C) E5R Development Team. All rights reserved.
+// Licensed under the MIT License. See LICENSE file for license information.
+
 ﻿using Microsoft.Framework.DependencyInjection;
 using System;
 using System.Collections.Generic;

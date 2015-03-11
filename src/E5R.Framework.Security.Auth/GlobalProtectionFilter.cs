@@ -1,3 +1,6 @@
+// Copyright (C) E5R Development Team. All rights reserved.
+// Licensed under the MIT License. See LICENSE file for license information.
+
 ﻿using Microsoft.AspNet.Mvc;
 using Microsoft.Framework.DependencyInjection;
 using System.Linq;
@@ -10,7 +13,7 @@ namespace E5R.Framework.Security.Auth
         public override void OnAuthorization(AuthorizationContext context)
         {
             var protectionAttributes = context.ActionDescriptor?.FilterDescriptors?
-                .Where(where => 
+                .Where(where =>
                     where.Filter.GetType() == typeof(ProtectionAttribute) ||
                     where.Filter.GetType().GetTypeInfo().IsSubclassOf(typeof(ProtectionAttribute)))
                 .Select(select => (ProtectionAttribute)select.Filter);

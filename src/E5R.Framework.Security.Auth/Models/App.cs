@@ -5,6 +5,7 @@
 
 namespace E5R.Framework.Security.Auth.Models
 {
+    #pragma warning disable 108
     public class App : DataModel<App>
     {
         public AuthId Id { get; set; }
@@ -21,4 +22,5 @@ namespace E5R.Framework.Security.Auth.Models
             };
         }
     }
+    #pragma warning restore 108
 }

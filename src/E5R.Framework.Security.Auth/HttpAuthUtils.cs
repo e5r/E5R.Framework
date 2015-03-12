@@ -28,7 +28,7 @@ namespace E5R.Framework.Security.Auth
                 HttpAuthSealedAccessTokenHeader,
                 HttpAuthCNonceHeader } } };
 
-        public static RequestFluxType GetRequestFluxType(HttpContext context)
+        public static RequestFluxType GetRequestFluxType(HttpContext context, string path)
         {
             foreach(var pair in _httpAuthFluxHeaders){
                 var founds = pair.Value
@@ -38,7 +38,16 @@ namespace E5R.Framework.Security.Auth
                     var others = context.Request.Headers.Keys.Where(where => !founds.Contains(where));
                     if(others.Count(x => x.StartsWith(HttpAuthPrefixHeader, OrdinalIgnoreCase)) > 0)
                         return BadRequest;
-                    return pair.Key;
+
+                    var isPath = string.Compare(context.Request.Path.Value, path, true) == 0;
+
+                    if (isPath && new RequestFluxType[] { RequestAccessToken, ConfirmTokenNonce }.Contains(pair.Key))
+                        return pair.Key;
+
+                    if (!isPath && pair.Key == ResourceRequest)
+                        return pair.Key;
+
+                    return BadRequest;
                 }
             }
 

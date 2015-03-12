@@ -13,5 +13,8 @@ namespace E5R.Framework.Security.Auth
         public static readonly string HttpAuthCNonceHeader = string.Concat(HttpAuthPrefixHeader, "CNonce");
         public static readonly string HttpAuthSealedAccessTokenHeader = string.Concat(HttpAuthPrefixHeader, "SealedAccessToken");
         public static readonly string HttpAuthOCNonceHeader = string.Concat(HttpAuthPrefixHeader, "OCNonce");
+
+        public static readonly string JsonMimeContentType = "application/json";
+        public static readonly string XmlMimeContentType = "application/xml";
     }
 }

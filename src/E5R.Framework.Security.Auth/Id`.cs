@@ -22,7 +22,28 @@ namespace E5R.Framework.Security.Auth
     public class AlgorithmSHA384 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA384.Create(); } } }
     public class AlgorithmSHA512 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA512.Create(); } } }
 
-    public class Id<T, E, S> : IDisposable
+    public class Id<T, E>
+        where T : _GAlgorithm
+                , new()
+        where E : Encoding
+                , new()
+    {
+        internal static readonly HashAlgorithm _algorithm = new T()._;
+        internal static readonly E _encoding = new E();
+
+        public static string GenerateHash(string value)
+        {
+            var hash = _algorithm.ComputeHash(_encoding.GetBytes(value));
+            var result = string.Empty;
+            foreach (var h in hash)
+            {
+                result += h.ToString("x2");
+            }
+            return result;
+        }
+    }
+
+    public class Id<T, E, S>
         where T : _GAlgorithm
                 , new()
         where E : Encoding
@@ -30,8 +51,6 @@ namespace E5R.Framework.Security.Auth
         where S : _GSize
                 , new()
     {
-        private readonly HashAlgorithm _algorithm = new T()._;
-        private readonly E _encoding = new E();
         private readonly int _size = new S()._;
         private readonly string _value = null;
 
@@ -39,14 +58,7 @@ namespace E5R.Framework.Security.Auth
         {
             _value = Guid.NewGuid().ToString().Replace("-", string.Empty);
 
-            var hash = _algorithm.ComputeHash(_encoding.GetBytes(_value));
-
-            _value = string.Empty;
-
-            foreach (var h in hash)
-            {
-                _value += h.ToString("x2");
-            }
+            _value = Id<T,E>.GenerateHash(_value);
 
             Validate();
         }
@@ -82,17 +94,12 @@ namespace E5R.Framework.Security.Auth
 
         public byte[] ToBytes()
         {
-            return ToBytes(_encoding);
+            return ToBytes(Id<T,E>._encoding);
         }
 
         public byte[] ToBytes(Encoding encoding)
         {
             return encoding.GetBytes(_value);
-        }
-
-        public void Dispose()
-        {
-            _algorithm.Dispose();
         }
     }
 }

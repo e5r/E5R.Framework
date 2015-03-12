@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 using System;
+using System.Text;
 
 namespace E5R.Framework.Security.Auth.Models
 {
@@ -11,9 +12,19 @@ namespace E5R.Framework.Security.Auth.Models
         public App App { get; set; }
 
         /// <example>
-        /// {AppID}:{AppPrivateKey}:{AppInstanceHost}:{X-Auth-SealedSessionToken}:{X-Auth-Nonce}
+        /// {AppID}:{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{Nonce}
         /// </example>
         public string Template { get; set; }
+        public string GenerateHash(AccessToken accessToken)
+        {
+            var hashString = Template
+                .Replace("{AppID}", accessToken.AppInstance.App.Id.ToString())
+                .Replace("{AppPrivateKey}", accessToken.AppInstance.App.PrivateKey.ToString())
+                .Replace("{AppInstancehost}", accessToken.AppInstance.Host)
+                .Replace("{SealedAccessToken}", accessToken.Token.ToString())
+                .Replace("{Nonce}", accessToken.Nonce);
+            return Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash(hashString);
+        }
 
         public AppNonceOrder(){}
 

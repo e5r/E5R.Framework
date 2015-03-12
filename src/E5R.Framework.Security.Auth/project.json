@@ -9,7 +9,8 @@
         "**.vspscc"
     ],
     "dependencies": {
-        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3"
+        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3",
+        "Newtonsoft.Json":  "6.0.6-*"
     },
     "commands": { },
     "frameworks": {

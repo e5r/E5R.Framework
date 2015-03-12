@@ -8,6 +8,7 @@ namespace E5R.Framework.Security.Auth
         RequestAccessToken = 0,
         ConfirmTokenNonce,
         ResourceRequest,
-        BadRequest
+        BadRequest,
+        Unknown
     }
 }

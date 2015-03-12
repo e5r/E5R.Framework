@@ -7,9 +7,9 @@ namespace Microsoft.AspNet.Builder
 {
     public static class BuilderExtensions
     {
-        public static IApplicationBuilder UseE5RAuthServer(this IApplicationBuilder app)
+        public static IApplicationBuilder UseE5RAuthServer(this IApplicationBuilder app, string path)
         {
-            return app.UseMiddleware<AuthenticationServerMiddleware>();
+            return app.UseMiddleware<AuthenticationServerMiddleware>(path);
         }
     }
 }

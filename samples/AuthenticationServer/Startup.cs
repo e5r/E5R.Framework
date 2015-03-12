@@ -16,7 +16,7 @@ namespace AuthenticationServer
         public void Configure(IApplicationBuilder app)
         {
             app.UseErrorPage();
-            app.UseE5RAuthServer();
+            app.UseE5RAuthServer("/session");
         }
     }
 }

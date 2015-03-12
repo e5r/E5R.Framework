@@ -8,16 +8,16 @@ using System.Security.Cryptography;
 
 namespace E5R.Framework.Security.Auth
 {
-    public interface _GSize         { int _        { get; } }
-    public class IdSize32  : _GSize { int _GSize._ { get { return 32;  } } }
-    public class IdSize40  : _GSize { int _GSize._ { get { return 40;  } } }
-    public class IdSize64  : _GSize { int _GSize._ { get { return 64;  } } }
-    public class IdSize96  : _GSize { int _GSize._ { get { return 96;  } } }
+    public interface _GSize { int _ { get; } }
+    public class IdSize32 : _GSize { int _GSize._ { get { return 32; } } }
+    public class IdSize40 : _GSize { int _GSize._ { get { return 40; } } }
+    public class IdSize64 : _GSize { int _GSize._ { get { return 64; } } }
+    public class IdSize96 : _GSize { int _GSize._ { get { return 96; } } }
     public class IdSize128 : _GSize { int _GSize._ { get { return 128; } } }
 
-    public interface _GAlgorithm            { HashAlgorithm _             { get; } }
-    public class AlgorithmMD5    : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return MD5.Create();    } } }
-    public class AlgorithmSHA1   : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA1.Create();   } } }
+    public interface _GAlgorithm { HashAlgorithm _ { get; } }
+    public class AlgorithmMD5 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return MD5.Create(); } } }
+    public class AlgorithmSHA1 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA1.Create(); } } }
     public class AlgorithmSHA256 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA256.Create(); } } }
     public class AlgorithmSHA384 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA384.Create(); } } }
     public class AlgorithmSHA512 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA512.Create(); } } }
@@ -60,8 +60,10 @@ namespace E5R.Framework.Security.Auth
 
         private void Validate()
         {
-            if(_value != null && _value.Length == _size){
-                if(new Regex(@"^[0-9a-fA-F]+$").IsMatch(_value)){
+            if (_value != null && _value.Length == _size)
+            {
+                if (new Regex(@"^[0-9a-fA-F]+$").IsMatch(_value))
+                {
                     return;
                 }
             }

@@ -5,12 +5,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Http;
-using static E5R.Framework.Security.Auth.Constants;
-using static E5R.Framework.Security.Auth.RequestFluxType;
-using static System.StringComparison;
 
 namespace E5R.Framework.Security.Auth
 {
+    using static Constants;
+    using static RequestFluxType;
+    using static StringComparison;
+
     public class HttpAuthUtils
     {
         private static readonly Dictionary<RequestFluxType, IList<string>> _httpAuthFluxHeaders

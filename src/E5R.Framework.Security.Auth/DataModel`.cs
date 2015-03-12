@@ -28,13 +28,14 @@ namespace E5R.Framework.Security.Auth
 
             var constructor = type.GetConstructor(parameters);
 
-            if(constructor == null){
+            if (constructor == null)
+            {
                 throw new TypeInitializationException(
                     string.Format("{0} does not contain a constructor with the type parameter {1}.",
                     type, parameters[0]), null);
             }
 
-            return (T) constructor.Invoke(new object[]{ dependence });
+            return (T)constructor.Invoke(new object[] { dependence });
         }
     }
 }

@@ -14,19 +14,24 @@ namespace E5R.Framework.Security.Auth
 
     public class HttpAuthUtils
     {
-        private static readonly Dictionary<RequestFluxType, IList<string>> _httpAuthFluxHeaders
-        = new Dictionary<RequestFluxType, IList<string>>() {
-            { RequestAccessToken, new List<string>() {
-                HttpAuthAppInstanceIdHeader,
-                HttpAuthSealHeader } },
-            { ConfirmTokenNonce, new List<string>() {
-                HttpAuthAppInstanceIdHeader,
-                HttpAuthAccessTokenHeader,
-                HttpAuthCNonceHeader } },
-            { ResourceRequest, new List<string>() {
-                HttpAuthAppInstanceIdHeader,
-                HttpAuthSealedAccessTokenHeader,
-                HttpAuthCNonceHeader } } };
+        private static readonly string _httpMethodRequestAccessToken = "POST";
+        private static readonly string _httpMethodConfirmTokenNonce= "PUT";
+
+        private static readonly Dictionary<RequestFluxType, IList<string>> _httpAuthFluxHeaders = new Dictionary<RequestFluxType, IList<string>>()
+        {
+            {
+                RequestAccessToken,
+                new List<string>() { HttpAuthAppInstanceIdHeader, HttpAuthSealHeader }
+            },
+            {
+                ConfirmTokenNonce,
+                new List<string>() { HttpAuthAppInstanceIdHeader, HttpAuthAccessTokenHeader, HttpAuthCNonceHeader }
+            },
+            {
+                ResourceRequest,
+                new List<string>() { HttpAuthAppInstanceIdHeader, HttpAuthSealedAccessTokenHeader, HttpAuthCNonceHeader }
+            }
+        };
 
         public static RequestFluxType GetRequestFluxType(HttpContext context, string path)
         {
@@ -41,7 +46,10 @@ namespace E5R.Framework.Security.Auth
 
                     var isPath = string.Compare(context.Request.Path.Value, path, true) == 0;
 
-                    if (isPath && new RequestFluxType[] { RequestAccessToken, ConfirmTokenNonce }.Contains(pair.Key))
+                    if (isPath && RequestAccessToken == pair.Key && context.Request.Method == _httpMethodRequestAccessToken)
+                        return pair.Key;
+
+                    if (isPath && ConfirmTokenNonce == pair.Key && context.Request.Method == _httpMethodConfirmTokenNonce)
                         return pair.Key;
 
                     if (!isPath && pair.Key == ResourceRequest)

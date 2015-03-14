@@ -24,7 +24,24 @@ namespace E5R.Framework.Security.Auth
 
         AccessToken IAuthenticationService.GetAccessToken(HttpContext context, string appInstanceId, string seal)
         {
-            throw new NotImplementedException();
+            // TODO: Identify client host
+            var clientHost = "localhost";
+
+            // TODO: Replace temp data
+            if (clientHost == "localhost" && appInstanceId == "My Test App Instance" && seal == "Erlimar seal")
+            {
+                var newApp = App.Create();
+                var newAppInstance = AppInstance.Create(newApp);
+                var newAccessToken = AccessToken.Create(newAppInstance);
+
+                newAccessToken.AppNonceOrder.GenerateHash
+
+                newAccessToken.Nonce = "Returned Nonce";
+
+                return newAccessToken;
+            }
+
+            return null;
         }
 
         bool IAuthenticationService.GrantAccess(HttpContext context, string appInstanceId, string sealedAccessTokenValue, string cNonce)

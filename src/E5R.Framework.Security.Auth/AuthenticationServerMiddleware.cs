@@ -53,11 +53,11 @@ namespace E5R.Framework.Security.Auth
                 responseHeaders.Set(HttpAuthOCNonceHeader, authResponse.OCNonce);
 
             // Body
-            var acceptContentArray = requestHeaders.Get("Accept")?.Split(new char[] { ';' });
-            var acceptContent = (acceptContentArray?.Length > 0 ? acceptContentArray[0] : "").Split(new char[] { ',' });
-
             if (authResponse.Body == null)
                 return;
+
+            var acceptContentArray = requestHeaders.Get("Accept")?.Split(new char[] { ';' });
+            var acceptContent = (acceptContentArray?.Length > 0 ? acceptContentArray[0] : "").Split(new char[] { ',' });
 
             if (acceptContent.Count(x => string.Compare(x, JsonMimeContentType, true) == 0) > 0)
             {
@@ -86,8 +86,8 @@ namespace E5R.Framework.Security.Auth
 
                 if (requestType == RequestAccessToken)
                 {
-                    var appInstanceId = headers.Get<string>(HttpAuthAppInstanceIdHeader);
-                    var seal = headers.Get<string>(HttpAuthSealHeader);
+                    var appInstanceId = headers[HttpAuthAppInstanceIdHeader];
+                    var seal = headers[HttpAuthSealHeader];
 
                     var accessToken = authenticationService.GetAccessToken(context, appInstanceId, seal);
 
@@ -103,9 +103,9 @@ namespace E5R.Framework.Security.Auth
 
                 if (requestType == ConfirmTokenNonce)
                 {
-                    var appInstanceId = headers.Get<string>(HttpAuthAppInstanceIdHeader);
-                    var accessTokenValue = headers.Get<string>(HttpAuthAccessTokenHeader);
-                    var cNonce = headers.Get<string>(HttpAuthCNonceHeader);
+                    var appInstanceId = headers[HttpAuthAppInstanceIdHeader];
+                    var accessTokenValue = headers[HttpAuthAccessTokenHeader];
+                    var cNonce = headers[HttpAuthCNonceHeader];
 
                     var accessToken = authenticationService.ConfirmToken(context, appInstanceId, accessTokenValue, cNonce);
 
@@ -121,9 +121,9 @@ namespace E5R.Framework.Security.Auth
 
                 if (requestType == ResourceRequest)
                 {
-                    var appInstanceId = headers.Get<string>(HttpAuthAppInstanceIdHeader);
-                    var sealedAccessTokenValue = headers.Get<string>(HttpAuthSealedAccessTokenHeader);
-                    var cNonce = headers.Get<string>(HttpAuthCNonceHeader);
+                    var appInstanceId = headers[HttpAuthAppInstanceIdHeader];
+                    var sealedAccessTokenValue = headers[HttpAuthSealedAccessTokenHeader];
+                    var cNonce = headers[HttpAuthCNonceHeader];
 
                     if(!authenticationService.GrantAccess(context, appInstanceId, sealedAccessTokenValue, cNonce))
                     {

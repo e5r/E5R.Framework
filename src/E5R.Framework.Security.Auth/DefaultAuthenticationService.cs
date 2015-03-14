@@ -17,14 +17,19 @@ namespace E5R.Framework.Security.Auth
             }
         }
 
-        bool IAuthenticationService.ValidateApplicationToken(string applicationToken, HttpContext context)
+        AccessToken IAuthenticationService.ConfirmToken(HttpContext context, string appInstanceId, string accessToken, string cNonce)
         {
-            if(applicationToken == "MyValidAppToken")
-            {
-                return true;
-            }
+            throw new NotImplementedException();
+        }
 
-            return false;
+        AccessToken IAuthenticationService.GetAccessToken(HttpContext context, string appInstanceId, string seal)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IAuthenticationService.GrantAccess(HttpContext context, string appInstanceId, string sealedAccessTokenValue, string cNonce)
+        {
+            throw new NotImplementedException();
         }
     }
 }

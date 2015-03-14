@@ -3,10 +3,10 @@
 
 namespace E5R.Framework.Security.Auth
 {
-    public class HttpBadRequestResponse : HttpAuthResponse
+    public class HttpUnauthorizedResponse : HttpAuthResponse
     {
-        public HttpBadRequestResponse()
-            : base((int)System.Net.HttpStatusCode.BadRequest)
-        {}
+        public HttpUnauthorizedResponse()
+            : base((int)System.Net.HttpStatusCode.Unauthorized)
+        { }
     }
 }

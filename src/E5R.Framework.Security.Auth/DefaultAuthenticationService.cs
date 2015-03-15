@@ -1,7 +1,7 @@
 // Copyright (C) E5R Development Team. All rights reserved.
 // Licensed under the MIT License. See LICENSE file for license information.
 
-﻿using System;
+using System;
 using E5R.Framework.Security.Auth.Models;
 using Microsoft.AspNet.Http;
 
@@ -33,10 +33,6 @@ namespace E5R.Framework.Security.Auth
                 var newApp = App.Create();
                 var newAppInstance = AppInstance.Create(newApp);
                 var newAccessToken = AccessToken.Create(newAppInstance);
-
-                newAccessToken.AppNonceOrder.GenerateHash
-
-                newAccessToken.Nonce = "Returned Nonce";
 
                 return newAccessToken;
             }

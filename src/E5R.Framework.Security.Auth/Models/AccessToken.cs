@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 using System;
+using System.Text;
 
 namespace E5R.Framework.Security.Auth.Models
 {
@@ -19,6 +20,9 @@ namespace E5R.Framework.Security.Auth.Models
         {
             Token = new AuthToken();
             AppInstance = appInstance;
+
+            var time = DateTime.UtcNow;
+            Nonce = Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash($"{time.ToBinary().ToString("x2")}:{time.Ticks.ToString("x2")}");
         }
     }
 }

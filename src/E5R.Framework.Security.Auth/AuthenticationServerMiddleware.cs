@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Microsoft.Framework.Logging;
 
 namespace E5R.Framework.Security.Auth
 {
@@ -18,18 +19,22 @@ namespace E5R.Framework.Security.Auth
     public class AuthenticationServerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger _logger;
 
         // TODO: Rename to something that let explicit authentication/session
         private readonly string _path;
 
-        public AuthenticationServerMiddleware(RequestDelegate next, string path)
+        public AuthenticationServerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, string path)
         {
             _next = next;
+            _logger = loggerFactory.Create<AuthenticationServerMiddleware>();
             _path = path;
         }
 
         private async void ProcessAuthResponse(HttpContext context, HttpAuthResponse authResponse)
         {
+            _logger.WriteInformation($"ProccessAuthResponse, StatusCode: {authResponse.StatusCode}");
+
             var responseHeaders = context.Response.Headers;
             var requestHeaders = context.Request.Headers;
 
@@ -54,13 +59,18 @@ namespace E5R.Framework.Security.Auth
 
             // Body
             if (authResponse.Body == null)
+            {
+                _logger.WriteInformation("Without body");
                 return;
+            }
 
             var acceptContentArray = requestHeaders.Get("Accept")?.Split(new char[] { ';' });
             var acceptContent = (acceptContentArray?.Length > 0 ? acceptContentArray[0] : "").Split(new char[] { ',' });
 
             if (acceptContent.Count(x => string.Compare(x, JsonMimeContentType, true) == 0) > 0)
             {
+                _logger.WriteInformation("With a JSON body");
+
                 context.Response.ContentType = $"{JsonMimeContentType}; charset=utf-8";
                 var responseText = JsonConvert.SerializeObject(authResponse.Body);
                 await context.Response.WriteAsync(responseText);
@@ -68,6 +78,8 @@ namespace E5R.Framework.Security.Auth
 
             if (acceptContent.Count(x => string.Compare(x, XmlMimeContentType, true) == 0) > 0)
             {
+                _logger.WriteWarning("With a XML body");
+
                 context.Response.ContentType = $"{XmlMimeContentType}; charset=utf-8";
                 new XmlSerializer(authResponse.Body.GetType())
                     .Serialize(context.Response.Body, authResponse.Body);

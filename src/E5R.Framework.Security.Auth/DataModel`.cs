@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class DataModel <T>
         where T : class
                 , new()
@@ -16,6 +17,7 @@ namespace E5R.Framework.Security.Auth
         }
     }
 
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class DataModel <T, D>
         where T : class
                 , new()

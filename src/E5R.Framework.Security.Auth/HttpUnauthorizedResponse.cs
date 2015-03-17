@@ -3,6 +3,7 @@
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpUnauthorizedResponse : HttpAuthResponse
     {
         public HttpUnauthorizedResponse()

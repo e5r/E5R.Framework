@@ -6,6 +6,7 @@ using System;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpAuthResponse
     {
         public int StatusCode { get; private set; }

@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public interface _GSize { int _ { get; } }
     public class IdSize32 : _GSize { int _GSize._ { get { return 32; } } }
     public class IdSize40 : _GSize { int _GSize._ { get { return 40; } } }
@@ -15,6 +16,7 @@ namespace E5R.Framework.Security.Auth
     public class IdSize96 : _GSize { int _GSize._ { get { return 96; } } }
     public class IdSize128 : _GSize { int _GSize._ { get { return 128; } } }
 
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public interface _GAlgorithm { HashAlgorithm _ { get; } }
     public class AlgorithmMD5 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return MD5.Create(); } } }
     public class AlgorithmSHA1 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA1.Create(); } } }
@@ -22,6 +24,7 @@ namespace E5R.Framework.Security.Auth
     public class AlgorithmSHA384 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA384.Create(); } } }
     public class AlgorithmSHA512 : _GAlgorithm { HashAlgorithm _GAlgorithm._ { get { return SHA512.Create(); } } }
 
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class Id<T, E>
         where T : _GAlgorithm
                 , new()
@@ -43,6 +46,7 @@ namespace E5R.Framework.Security.Auth
         }
     }
 
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class Id<T, E, S>
         where T : _GAlgorithm
                 , new()

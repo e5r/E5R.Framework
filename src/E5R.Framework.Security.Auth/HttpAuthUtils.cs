@@ -12,6 +12,7 @@ namespace E5R.Framework.Security.Auth
     using static RequestFluxType;
     using static StringComparison;
 
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpAuthUtils
     {
         private static readonly string _httpMethodRequestAccessToken = "POST";

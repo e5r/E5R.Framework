@@ -9,6 +9,7 @@ namespace E5R.Framework.Security.Auth
 {
     using static Constants;
 
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpAccessTokenResponse : HttpAuthResponse
     {
         public HttpAccessTokenResponse(AccessToken accessToken) 

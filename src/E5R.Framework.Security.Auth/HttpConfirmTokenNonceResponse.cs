@@ -7,6 +7,7 @@ using System.Net;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpConfirmTokenNonceResponse : HttpAuthResponse
     {
         public HttpConfirmTokenNonceResponse(AccessToken accessToken)

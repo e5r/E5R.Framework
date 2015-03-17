@@ -3,6 +3,7 @@
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move parts to E5R.Framework.Security.Auth.[NetUtils]
     public static class Constants
     {
         public static readonly string HttpAuthAppInstanceIdHeader = "X-E5RAuth-AppInstanceId";

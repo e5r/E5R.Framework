@@ -5,6 +5,7 @@ using System;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpExceptionResponse : HttpAuthResponse
     {
         public HttpExceptionResponse(Exception exception)

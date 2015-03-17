@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class AuthToken : Id<AlgorithmSHA384, UnicodeEncoding, IdSize96>
     {
         public AuthToken() : base() {}

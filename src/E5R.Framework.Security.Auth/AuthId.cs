@@ -7,9 +7,10 @@ using System.Security.Cryptography;
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Move to E5R.Framework.Security.Auth.[Data|Common|Core]
     public class AuthId : Id<AlgorithmMD5, UnicodeEncoding, IdSize32>
     {
-        public AuthId() : base() {}
-        public AuthId(string value) : base(value) {}
+        public AuthId() : base() { }
+        public AuthId(string value) : base(value) { }
     }
 }

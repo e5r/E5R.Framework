@@ -31,7 +31,7 @@ if($GetAccessToken)
 	try{
 		invoke-webrequest -uri "$baseUrl/session" -method POST  -useragent $userAgent  -headers $headers
 	}
-	catch
+	catch [system.net.webexception]
 	{
 		write-host $_.exception.message
 		write-host (new-object system.io.streamreader($_.exception.response.getresponsestream())).readtoend()
@@ -53,7 +53,7 @@ if($ConfirmAccessToken)
 	try{
 		invoke-webrequest -uri "$baseUrl/session" -method PUT  -useragent $userAgent  -headers $headers
 	}
-	catch
+	catch [system.net.webexception]
 	{
 		write-host $_.exception.message
 		write-host (new-object system.io.streamreader($_.exception.response.getresponsestream())).readtoend()
@@ -74,7 +74,7 @@ if($GetResource)
 	try{
 		invoke-webrequest -uri "$baseUrl/resource" -method GET  -useragent $userAgent  -headers $headers
 	}
-	catch
+	catch [system.net.webexception]
 	{
 		write-host $_.exception.message
 		write-host (new-object system.io.streamreader($_.exception.response.getresponsestream())).readtoend()

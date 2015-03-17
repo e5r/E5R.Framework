@@ -3,12 +3,13 @@
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
+using Microsoft.Framework.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
-using Microsoft.Framework.Logging;
+using System.Xml.Linq;
 
 namespace E5R.Framework.Security.Auth
 {
@@ -29,6 +30,15 @@ namespace E5R.Framework.Security.Auth
             _next = next;
             _logger = loggerFactory.Create<AuthenticationServerMiddleware>();
             _path = path;
+        }
+
+        private string convertObjectToJsonString(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
         }
 
         private async void ProcessAuthResponse(HttpContext context, HttpAuthResponse authResponse)
@@ -72,8 +82,8 @@ namespace E5R.Framework.Security.Auth
                 _logger.WriteInformation("With a JSON body");
 
                 context.Response.ContentType = $"{JsonMimeContentType}; charset=utf-8";
-                var responseText = JsonConvert.SerializeObject(authResponse.Body);
-                await context.Response.WriteAsync(responseText);
+
+                await context.Response.WriteAsync(convertObjectToJsonString(authResponse.Body));
             }
 
             if (acceptContent.Count(x => string.Compare(x, XmlMimeContentType, true) == 0) > 0)
@@ -81,8 +91,12 @@ namespace E5R.Framework.Security.Auth
                 _logger.WriteWarning("With a XML body");
 
                 context.Response.ContentType = $"{XmlMimeContentType}; charset=utf-8";
-                new XmlSerializer(authResponse.Body.GetType())
-                    .Serialize(context.Response.Body, authResponse.Body);
+
+                var xmlDoc = JsonConvert.DeserializeXNode(convertObjectToJsonString(authResponse.Body), null, true);
+                xmlDoc.Declaration = new XDeclaration("1.0", "utf-8", "yes");
+
+                await context.Response.WriteAsync(xmlDoc.Declaration.ToString());
+                await context.Response.WriteAsync(xmlDoc.Root.ToString());
             }
         }
 

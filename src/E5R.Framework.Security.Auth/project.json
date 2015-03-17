@@ -10,7 +10,7 @@
     ],
     "dependencies": {
         "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3",
-        "Newtonsoft.Json": "6.0.6-*",
+        "Newtonsoft.Json": "7.0.1-beta-*",
         "Microsoft.Framework.Logging": "1.0.0-beta3"
     },
     "commands": { },

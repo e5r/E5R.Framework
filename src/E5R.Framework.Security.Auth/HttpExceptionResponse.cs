@@ -10,7 +10,7 @@ namespace E5R.Framework.Security.Auth
         public HttpExceptionResponse(Exception exception)
             : base((int)System.Net.HttpStatusCode.InternalServerError)
         {
-            Body = exception;
+            Body = new { Exception = exception };
         }
     }
 }

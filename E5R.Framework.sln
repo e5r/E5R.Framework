@@ -39,6 +39,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".e5r", ".e5r", "{3B809C45-7
 		.e5r\version = .e5r\version
 	EndProjectSection
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data", "src\E5R.Framework.Security.Auth.Data\E5R.Framework.Security.Auth.Data.kproj", "{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.NetUtils", "src\E5R.Framework.Security.Auth.NetUtils\E5R.Framework.Security.Auth.NetUtils.kproj", "{4CB01E7E-50EC-4578-AF8C-61CA37091521}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,14 @@ Global
 		{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB01E7E-50EC-4578-AF8C-61CA37091521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB01E7E-50EC-4578-AF8C-61CA37091521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB01E7E-50EC-4578-AF8C-61CA37091521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB01E7E-50EC-4578-AF8C-61CA37091521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +83,7 @@ Global
 		{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF} = {FB48C03D-D86F-4756-A861-A9F156923617}
 		{93367FB1-4F2C-491A-8902-7FA0FF87B2BA} = {0D04485E-DDD3-41C5-BDBD-E30B91CC4884}
 		{3B809C45-7EB3-4037-9238-22169D24988A} = {E7ED6AE8-E89C-4D95-B5FB-250F794C4B76}
+		{C7B89C97-2E37-42C2-81E9-1F83F314A9E8} = {D30F36C0-E368-4889-9070-5862C21C093E}
+		{4CB01E7E-50EC-4578-AF8C-61CA37091521} = {D30F36C0-E368-4889-9070-5862C21C093E}
 	EndGlobalSection
 EndGlobal

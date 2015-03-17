@@ -6,13 +6,12 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Http;
 
-namespace E5R.Framework.Security.Auth
+namespace E5R.Framework.Security.Auth.NetUtils
 {
     using static Constants;
     using static RequestFluxType;
     using static StringComparison;
 
-    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpAuthUtils
     {
         private static readonly string _httpMethodRequestAccessToken = "POST";

@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 ﻿using Microsoft.Framework.DependencyInjection;
-using System;
 using System.Collections.Generic;
 
 namespace E5R.Framework.Security.Auth

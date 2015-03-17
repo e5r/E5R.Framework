@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 using System;
-using E5R.Framework.Security.Auth.Models;
+using E5R.Framework.Security.Auth.Data.Models;
 using Microsoft.AspNet.Http;
 
 namespace E5R.Framework.Security.Auth

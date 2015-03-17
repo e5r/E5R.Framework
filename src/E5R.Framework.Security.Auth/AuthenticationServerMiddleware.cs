@@ -10,10 +10,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using E5R.Framework.Security.Auth.NetUtils;
 
 namespace E5R.Framework.Security.Auth
 {
     using static Constants;
+    using static NetUtils.Constants;
     using static HttpAuthUtils;
     using static RequestFluxType;
 

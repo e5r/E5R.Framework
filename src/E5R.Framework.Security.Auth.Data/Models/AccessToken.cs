@@ -4,7 +4,7 @@
 using System;
 using System.Text;
 
-namespace E5R.Framework.Security.Auth.Models
+namespace E5R.Framework.Security.Auth.Data.Models
 {
     public class AccessToken : DataModel<AccessToken, AppInstance>
     {

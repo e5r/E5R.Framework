@@ -1,12 +1,8 @@
 ﻿// Copyright (C) E5R Development Team. All rights reserved.
 // Licensed under the MIT License. See LICENSE file for license information.
 
-using Microsoft.AspNet.Http;
-using System;
-
-namespace E5R.Framework.Security.Auth
+namespace E5R.Framework.Security.Auth.NetUtils
 {
-    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpAuthResponse
     {
         public int StatusCode { get; private set; }

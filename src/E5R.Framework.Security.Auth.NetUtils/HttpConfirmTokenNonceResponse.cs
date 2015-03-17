@@ -1,13 +1,12 @@
 ﻿// Copyright (C) E5R Development Team. All rights reserved.
 // Licensed under the MIT License. See LICENSE file for license information.
 
-using E5R.Framework.Security.Auth.Models;
+using E5R.Framework.Security.Auth.Data.Models;
 using System;
 using System.Net;
 
-namespace E5R.Framework.Security.Auth
+namespace E5R.Framework.Security.Auth.NetUtils
 {
-    // TODO: Move to E5R.Framework.Security.Auth.[NetUtils]
     public class HttpConfirmTokenNonceResponse : HttpAuthResponse
     {
         public HttpConfirmTokenNonceResponse(AccessToken accessToken)

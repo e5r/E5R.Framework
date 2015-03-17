@@ -9,14 +9,13 @@ param(
 
 $baseUrl = "http://localhost:$portNumber"
 $userAgent = "E5R AuthenticationServer API Test/0.1 (Windows)"
-$headerPrefix = "X-EhAuth"
-$headerAppInstanceIdHeader = "$headerPrefix-AppInstanceId"
-$headerSealHeader = "$headerPrefix-Seal"
-$headerAccessTokenHeader = "$headerPrefix-AccessToken"
-$headerNonceHeader = "$headerPrefix-Nonce"
-$headerCNonceHeader = "$headerPrefix-CNonce"
-$headerSealedAccessTokenHeader = "$headerPrefix-SealedAccessToken"
-$headerOCNonceHeader = "$headerPrefix-OCNonce"
+$headerAppInstanceIdHeader = "X-E5RAuth-AppInstanceId"
+$headerSealHeader = "X-E5RAuth-Seal"
+$headerAccessTokenHeader = "X-E5RAuth-AccessToken"
+$headerNonceHeader = "X-E5RAuth-Nonce"
+$headerCNonceHeader = "X-E5RAuth-CNonce"
+$headerSealedAccessTokenHeader = "X-E5RAuth-SealedAccessToken"
+$headerOCNonceHeader = "X-E5RAuth-OCNonce"
 
 if($GetAccessToken)
 {

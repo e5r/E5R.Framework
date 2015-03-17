@@ -5,14 +5,13 @@ namespace E5R.Framework.Security.Auth
 {
     public static class Constants
     {
-        public static readonly string HttpAuthPrefixHeader = "X-EhAuth-";
-        public static readonly string HttpAuthAppInstanceIdHeader = string.Concat(HttpAuthPrefixHeader, "AppInstanceId");
-        public static readonly string HttpAuthSealHeader = string.Concat(HttpAuthPrefixHeader, "Seal");
-        public static readonly string HttpAuthAccessTokenHeader = string.Concat(HttpAuthPrefixHeader, "AccessToken");
-        public static readonly string HttpAuthNonceHeader = string.Concat(HttpAuthPrefixHeader, "Nonce");
-        public static readonly string HttpAuthCNonceHeader = string.Concat(HttpAuthPrefixHeader, "CNonce");
-        public static readonly string HttpAuthSealedAccessTokenHeader = string.Concat(HttpAuthPrefixHeader, "SealedAccessToken");
-        public static readonly string HttpAuthOCNonceHeader = string.Concat(HttpAuthPrefixHeader, "OCNonce");
+        public static readonly string HttpAuthAppInstanceIdHeader = "X-E5RAuth-AppInstanceId";
+        public static readonly string HttpAuthSealHeader = "X-E5RAuth-Seal";
+        public static readonly string HttpAuthAccessTokenHeader = "X-E5RAuth-AccessToken";
+        public static readonly string HttpAuthNonceHeader = "X-E5RAuth-Nonce";
+        public static readonly string HttpAuthCNonceHeader = "X-E5RAuth-CNonce";
+        public static readonly string HttpAuthSealedAccessTokenHeader = "X-E5RAuth-SealedAccessToken";
+        public static readonly string HttpAuthOCNonceHeader = "X-E5RAuth-OCNonce";
 
         public static readonly string JsonMimeContentType = "application/json";
         public static readonly string XmlMimeContentType = "application/xml";

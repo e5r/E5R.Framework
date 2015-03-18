@@ -6,9 +6,8 @@ using System.Text;
 
 namespace E5R.Framework.Security.Auth.Data.Models
 {
-    public class AccessToken : DataModel<AccessToken, AppInstance>
+    public class AccessToken : DataModel<AccessToken, AuthToken, AppInstance>
     {
-        public AuthToken Token { get; set; }
         public AppInstance AppInstance { get; set; }
         public string Nonce { get; set; }
         public bool NonceConfirmed { get; set; }
@@ -18,7 +17,7 @@ namespace E5R.Framework.Security.Auth.Data.Models
 
         public AccessToken(AppInstance appInstance)
         {
-            Token = new AuthToken();
+            Id = new AuthToken();
             AppInstance = appInstance;
 
             var time = DateTime.UtcNow;

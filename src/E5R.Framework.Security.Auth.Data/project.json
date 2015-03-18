@@ -1,6 +1,6 @@
 ﻿{
     "authors": [ "E5R Development Team" ],
-    "description": "Data for Authentication and Authorization component for E5R Framework",
+    "description": "Authentication and Authorization Data component for E5R Framework",
     "version": "1.0.0-*",
     "dependencies": {
     },

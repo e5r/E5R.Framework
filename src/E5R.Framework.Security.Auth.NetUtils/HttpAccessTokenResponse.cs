@@ -11,13 +11,13 @@ namespace E5R.Framework.Security.Auth.NetUtils
         public HttpAccessTokenResponse(AccessToken accessToken) 
             : base((int)System.Net.HttpStatusCode.Created)
         {
-            if (accessToken == null || string.IsNullOrWhiteSpace(accessToken?.Token.ToString()))
+            if (accessToken == null || string.IsNullOrWhiteSpace(accessToken?.Id.ToString()))
                     throw new ArgumentNullException("accessToken", "AccessToken is null");
 
             if (string.IsNullOrWhiteSpace(accessToken.Nonce))
                 throw new NullReferenceException("Nonce is null");
 
-            AccessToken = accessToken.Token.ToString();
+            AccessToken = accessToken.Id.ToString();
             Nonce = accessToken.Nonce;
         }
     }

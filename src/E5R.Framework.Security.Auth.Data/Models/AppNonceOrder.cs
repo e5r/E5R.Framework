@@ -5,9 +5,8 @@ using System.Text;
 
 namespace E5R.Framework.Security.Auth.Data.Models
 {
-    public class AppNonceOrder : DataModel<AppNonceOrder, App>
+    public class AppNonceOrder : DataModel<AppNonceOrder, AuthId, App>
     {
-        public AuthId Id { get; set; }
         public App App { get; set; }
 
         /// <example>
@@ -20,7 +19,7 @@ namespace E5R.Framework.Security.Auth.Data.Models
                 .Replace("{AppID}", accessToken.AppInstance.App.Id.ToString())
                 .Replace("{AppPrivateKey}", accessToken.AppInstance.App.PrivateKey.ToString())
                 .Replace("{AppInstancehost}", accessToken.AppInstance.Host)
-                .Replace("{SealedAccessToken}", accessToken.Token.ToString())
+                .Replace("{SealedAccessToken}", accessToken.Id.ToString())
                 .Replace("{Nonce}", accessToken.Nonce);
             return Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash(hashString);
         }

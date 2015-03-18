@@ -3,9 +3,8 @@
 
 namespace E5R.Framework.Security.Auth.Data.Models
 {
-    public class AppInstance : DataModel<AppInstance, App>
+    public class AppInstance : DataModel<AppInstance, AuthId, App>
     {
-        public AuthId Id { get; set; }
         public App App { get; set; }
         public string Host { get; set; }
 

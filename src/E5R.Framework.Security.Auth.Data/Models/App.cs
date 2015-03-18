@@ -4,9 +4,8 @@
 namespace E5R.Framework.Security.Auth.Data.Models
 {
     #pragma warning disable 108
-    public class App : DataModel<App>
+    public class App : DataModel<App, AuthId>
     {
-        public AuthId Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public AuthToken PrivateKey { get; set; }

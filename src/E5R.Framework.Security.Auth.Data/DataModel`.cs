@@ -9,20 +9,28 @@ using System.Reflection;
 
 namespace E5R.Framework.Security.Auth.Data
 {
-    public class DataModel <T>
+    public class DataModel <T, I>
         where T : class
                 , new()
+        where I : class
+                , new()
     {
+        public I Id { get; set; }
+
         public static T Create()
         {
             return new T();
         }
     }
 
-    public class DataModel <T, D>
+    public class DataModel <T, I, D>
         where T : class
                 , new()
+        where I : class
+                , new()
     {
+        public I Id { get; set; }
+
         public static T Create(D dependence)
         {
             var type = typeof(T);

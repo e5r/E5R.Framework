@@ -12,7 +12,7 @@ namespace E5R.Framework.Security.Auth.NetUtils
         public HttpConfirmTokenNonceResponse(AccessToken accessToken)
             : base((int)HttpStatusCode.Accepted)
         {
-            if (accessToken == null || string.IsNullOrWhiteSpace(accessToken?.Token.ToString()))
+            if (accessToken == null || string.IsNullOrWhiteSpace(accessToken?.Id.ToString()))
                 throw new ArgumentNullException("accessToken", "AccessToken is null");
 
             if (string.IsNullOrWhiteSpace(accessToken.Nonce))
@@ -21,7 +21,7 @@ namespace E5R.Framework.Security.Auth.NetUtils
             if (accessToken.AppNonceOrder == null || string.IsNullOrWhiteSpace(accessToken.AppNonceOrder.Template))
                 throw new NullReferenceException("AppNonceOrder is null");
 
-            SealedAccessToken = accessToken.Token.ToString();
+            SealedAccessToken = accessToken.Id.ToString();
             Nonce = accessToken.Nonce;
             OCNonce = accessToken.AppNonceOrder.GenerateHash(accessToken);
         }

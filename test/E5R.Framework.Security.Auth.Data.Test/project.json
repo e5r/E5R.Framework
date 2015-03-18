@@ -1,0 +1,25 @@
+{
+    "authors": [ "E5R Development Team" ],
+    "description": "Suite Test for: Authentication and Authorization Data component for E5R Framework",
+    "version": "1.0.0-*",
+    "exclude": [ ],
+    "packExclude": [
+        "**.kproj",
+        "**.user",
+        "**.vspscc"
+    ],
+    "dependencies": {
+        //rc2-build2857
+        "xunit":"2.0.0-rc2-*",
+        "xunit.runner.aspnet": "2.0.0-rc2-*",
+        "xunit.runner.visualstudio": "2.0.0-rc2-*",
+        "Moq": "4.2.1502.911",
+        "E5R.Framework.Security.Auth.Data": ""
+    },
+    "commands": {
+        "test": "xunit.runner.aspnet"
+    },
+    "frameworks": {
+        "aspnet50": { }
+    }
+}

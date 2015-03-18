@@ -2,11 +2,9 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 using System;
-using System.Text;
-using System.Security.Cryptography;
 using Xunit;
 
-namespace E5R.Framework.Security.Auth.Tests
+namespace E5R.Framework.Security.Auth.Data.Tests
 {
     public class AuthIdTests
     {

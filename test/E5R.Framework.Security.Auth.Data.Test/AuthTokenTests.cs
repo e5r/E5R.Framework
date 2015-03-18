@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace E5R.Framework.Security.Auth.Tests
+namespace E5R.Framework.Security.Auth.Data.Tests
 {
     public class AuthTokenTests
     {

@@ -3,6 +3,7 @@
 
 namespace E5R.Framework.Security.Auth
 {
+    // TODO: Refactory
     public interface IAuthorizationService
     {
         bool AllowUnsignedAction { get; set; }

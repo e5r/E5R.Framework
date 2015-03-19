@@ -2,13 +2,24 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 using System;
+using System.Linq;
 using E5R.Framework.Security.Auth.Data.Models;
 using Microsoft.AspNet.Http;
+using E5R.Framework.Security.Auth.Data;
 
 namespace E5R.Framework.Security.Auth
 {
     public class DefaultAuthenticationService : IAuthenticationService
     {
+        private readonly IDataStorage<AppInstance> _appInstanceStorage;
+        private readonly IDataStorage<AccessToken> _accessTokenStorage;
+
+        public DefaultAuthenticationService(IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
+        {
+            _appInstanceStorage = appInstanceStorage;
+            _accessTokenStorage = accessTokenStorage;
+        }
+
         bool IAuthenticationService.IsAuthenticCredential
         {
             get
@@ -24,20 +35,24 @@ namespace E5R.Framework.Security.Auth
 
         AccessToken IAuthenticationService.GetAccessToken(HttpContext context, string appInstanceId, string seal)
         {
-            // TODO: Identify client host
-            var clientHost = "localhost";
+            var appInstance = _appInstanceStorage.Get(appInstanceId);
 
-            // TODO: Replace temp data
-            if (clientHost == "localhost" && appInstanceId == "My Test App Instance" && seal == "Erlimar seal")
-            {
-                var newApp = App.Create();
-                var newAppInstance = AppInstance.Create(newApp);
-                var newAccessToken = AccessToken.Create(newAppInstance);
+            if (appInstance == null)
+                return null;
 
-                return newAccessToken;
-            }
+            // TODO: Validate client host from HttpContext
 
-            return null;
+            // SHA(AppID:AppPrivateKey:AppInstanceHost/IP)
+            if (!appInstance.IsOriginalSeal(seal))
+                return null;
+
+            // FIXME: Remove all previours accessToken?
+            _accessTokenStorage.Remove(_accessTokenStorage.All.Where(x => x.AppInstance.Id == appInstance.Id));
+
+            var accessToken = AccessToken.Create(appInstance);
+            accessToken.AppNonceOrder = appInstance.App.GetRamdonNonceOrder();
+
+            return _accessTokenStorage.Add(accessToken);
         }
 
         bool IAuthenticationService.GrantAccess(HttpContext context, string appInstanceId, string sealedAccessTokenValue, string cNonce)

@@ -42,7 +42,6 @@ namespace E5R.Framework.Security.Auth
 
             // TODO: Validate client host from HttpContext
 
-            // SHA(AppID:AppPrivateKey:AppInstanceHost/IP)
             if (!appInstance.IsOriginalSeal(seal))
                 return null;
 
@@ -50,6 +49,7 @@ namespace E5R.Framework.Security.Auth
             _accessTokenStorage.Remove(_accessTokenStorage.All.Where(x => x.AppInstance.Id == appInstance.Id));
 
             var accessToken = AccessToken.Create(appInstance);
+
             accessToken.AppNonceOrder = appInstance.App.GetRamdonNonceOrder();
 
             return _accessTokenStorage.Add(accessToken);

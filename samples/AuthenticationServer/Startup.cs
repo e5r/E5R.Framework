@@ -6,16 +6,20 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
+using E5R.Framework.Security.Auth;
 
 namespace AuthenticationServer
 {
+    using System;
+    using System.Collections.Generic;
     using static System.StringComparison;
 
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddE5RAuthServer();
+            services.AddE5RAuthServer()
+                    .AddE5RAuthServerInMemoryStorage();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -26,8 +30,8 @@ namespace AuthenticationServer
 
             loggerFactory.AddConsole((category, logLevel) =>
             {
-                return category == typeof(E5R.Framework.Security.Auth.AuthenticationServerMiddleware).FullName
-                    && logLevel >= minLogLevel;
+                var middlewareName = typeof(AuthenticationServerMiddleware).FullName;
+                return category == middlewareName && logLevel >= minLogLevel;
             });
 
             app.UseErrorPage();

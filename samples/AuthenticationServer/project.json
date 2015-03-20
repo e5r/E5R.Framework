@@ -13,6 +13,7 @@
     ],
     "dependencies": {
         "E5R.Framework.Security.Auth": "",
+        "E5R.Framework.Security.Auth.Data.InMemory": "",
         "Microsoft.AspNet.Hosting": "1.0.0-beta3",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta3",

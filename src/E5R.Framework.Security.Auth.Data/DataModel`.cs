@@ -9,27 +9,47 @@ using System.Reflection;
 
 namespace E5R.Framework.Security.Auth.Data
 {
-    public class DataModel <T, I>
+    public interface IDataModel
+    {
+        string StringId { get; }
+    }
+
+    public class DataModel <T, I> : IDataModel
         where T : class
                 , new()
         where I : class
                 , new()
     {
         public I Id { get; set; }
+
+        public string StringId
+        {
+            get { return Id.ToString(); }
+        }
 
         public static T Create()
         {
             return new T();
         }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 
-    public class DataModel <T, I, D>
+    public class DataModel <T, I, D> : IDataModel
         where T : class
                 , new()
         where I : class
                 , new()
     {
         public I Id { get; set; }
+
+        public string StringId
+        {
+            get { return Id.ToString(); }
+        }
 
         public static T Create(D dependence)
         {
@@ -47,6 +67,11 @@ namespace E5R.Framework.Security.Auth.Data
             }
 
             return (T)constructor.Invoke(new object[] { dependence });
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
     }
 }

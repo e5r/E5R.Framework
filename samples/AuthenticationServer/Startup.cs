@@ -6,12 +6,9 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using E5R.Framework.Security.Auth;
 
 namespace AuthenticationServer
 {
-    using System;
-    using System.Collections.Generic;
     using static System.StringComparison;
 
     public class Startup

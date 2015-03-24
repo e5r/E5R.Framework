@@ -29,8 +29,10 @@ namespace E5R.Framework.Security.Auth
 
         public AuthenticationServerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, string path)
         {
+            var loggerName = GetType().FullName.Split('.').LastOrDefault();
+
             _next = next;
-            _logger = loggerFactory.Create<AuthenticationServerMiddleware>();
+            _logger = loggerFactory.Create(loggerName);
             _path = path;
         }
 

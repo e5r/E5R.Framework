@@ -4,17 +4,27 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Framework.Logging;
 
 namespace E5R.Framework.Security.Auth.Data.InMemory
 {
     public class InMemoryRepository<T>
         where T : IDataModel
     {
+        private readonly ILogger _logger;
+
+        public InMemoryRepository(ILoggerFactory loggerFactory)
+        {
+            var loggerName = typeof(InMemoryDatabase).FullName.Split('.').LastOrDefault();
+
+            _logger = loggerFactory.Create(loggerName);
+        }
+
         public IEnumerable<T> All
         {
             get
             {
-                return InMemoryDatabase.GetDatabase<T>().AsEnumerable();
+                return InMemoryDatabase.GetDatabase<T>(_logger).AsEnumerable();
             }
         }
 
@@ -46,7 +56,7 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
 
         public void Remove(T data)
         {
-            if (All.Count(where => where.GetHashCode() == data.GetHashCode()) > 0)
+            if (All.Count(where => where.GetHashCode() == data.GetHashCode()) != 1)
                 throw new Exception("Object not found in the database.");
 
             (All as IList<T>).Remove(data);

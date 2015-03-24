@@ -4,7 +4,8 @@
     "version": "1.0.0-*",
     "dependencies": {
         "E5R.Framework.Security.Auth.Data": "",
-        "Microsoft.Framework.DependencyInjection": "1.0.0-beta3"
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta3",
+        "Microsoft.Framework.Logging":  "1.0.0-beta3"
     },
 
     "frameworks" : {

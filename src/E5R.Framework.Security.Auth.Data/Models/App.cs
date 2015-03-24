@@ -31,8 +31,9 @@ namespace E5R.Framework.Security.Auth.Data.Models
             return app;
         }
 
-        private static IEnumerable<AppNonceOrder> GenerateNonceOrders(App app)
+        public static IEnumerable<AppNonceOrder> GenerateNonceOrders(App app)
         {
+            // TODO: Change to PRIVATE after InMemoryDatabase.Seed use [Startup.cs].Configure
             yield return AppNonceOrder.Create(app);
             yield return AppNonceOrder.Create(app);
             yield return AppNonceOrder.Create(app);

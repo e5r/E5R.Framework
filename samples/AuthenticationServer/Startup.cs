@@ -28,11 +28,7 @@ namespace AuthenticationServer
                 ? LogLevel.Verbose
                 : LogLevel.Warning;
 
-            loggerFactory.AddConsole((category, logLevel) =>
-            {
-                var middlewareName = typeof(AuthenticationServerMiddleware).FullName;
-                return category == middlewareName && logLevel >= minLogLevel;
-            });
+            loggerFactory.AddConsole(minLogLevel);
 
             app.UseErrorPage();
             app.UseE5RAuthServer("/session");

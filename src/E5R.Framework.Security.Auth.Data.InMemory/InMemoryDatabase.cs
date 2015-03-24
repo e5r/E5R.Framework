@@ -5,6 +5,7 @@ using E5R.Framework.Security.Auth.Data.Models;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Framework.Logging;
 
 namespace E5R.Framework.Security.Auth.Data.InMemory
 {
@@ -14,16 +15,20 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
 
         private readonly IDictionary<Type, dynamic> _dictionary = new Dictionary<Type, dynamic>();
 
-        public static IList<T> GetDatabase<T>()
+        public static IList<T> GetDatabase<T>(ILogger logger)
         {
             if (_instance == null)
             {
                 _instance = new InMemoryDatabase();
-                Seed();
+                Seed(logger);
             }
 
-            if(_instance._dictionary.Count(where => where.Key == typeof(T)) != 1)
-                throw new KeyNotFoundException($"Database not found for type {typeof(T).FullName}.");
+            if (_instance._dictionary.Count(where => where.Key == typeof(T)) != 1)
+            {
+                var error = new KeyNotFoundException($"Database not found for type {typeof(T).FullName}.");
+                logger?.WriteError(error.Message, error);
+                throw error;
+            }
 
             return (IList<T>)_instance._dictionary.SingleOrDefault(x => x.Key == typeof(T)).Value;
         }
@@ -42,24 +47,40 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
                 _dictionary.Add(typeof(T), (new List<T>()));
         }
 
-        private static void Seed()
+        private static void Seed(ILogger logger)
         {
-            var defaultApp = App.Create();
+            // TODO: Move to InMemoryConfigure in Startup.cs
 
-            defaultApp.Name = "DefaultApp";
-            defaultApp.Description = "A default App for InMemory tests";
+            var defaultApp = new App()
+            {
+                Id = new AuthId("4adf130c5332c69c75fba9284ce1d27e"),
+                PrivateKey = new AuthToken("194cf821e066ca8708c297691ba15b16fe8c163f0ccabcf26f3eab5fd4c6779d0da6d7aef285255ae45e611c4087e081"),
+                Name = "DefaultApp",
+                Description = "A default App for InMemory tests"
+            };
 
-            GetDatabase<App>().Add(defaultApp);
+            defaultApp.NonceOrders = App.GenerateNonceOrders(defaultApp);
 
-            var appNonceDb = GetDatabase<AppNonceOrder>();
+            GetDatabase<App>(logger).Add(defaultApp);
+
+            var appNonceDb = GetDatabase<AppNonceOrder>(logger);
             foreach (var order in defaultApp.NonceOrders)
                 appNonceDb.Add(order);
 
-            var defaultAppInstance = AppInstance.Create(defaultApp);
+            var defaultAppInstance = new AppInstance()
+            {
+                Id = new AuthId("678c588f461ca61879d2dc689f425e3f"),
+                App = defaultApp,
+                Host = "localhost"
+            };
 
-            defaultAppInstance.Host = "localhost";
+            GetDatabase<AppInstance>(logger).Add(defaultAppInstance);
 
-            GetDatabase<AppInstance>().Add(defaultAppInstance);
+            logger?.WriteVerbose("AppId: {0}", defaultAppInstance.App.StringId);
+            logger?.WriteVerbose("AppPK: {0}", defaultAppInstance.App.PrivateKey);
+
+            logger?.WriteVerbose("InstanceId: {0}", defaultAppInstance.StringId);
+            logger?.WriteVerbose("InstanceHost: {0}", defaultAppInstance.Host);
         }
     }
 }

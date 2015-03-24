@@ -17,14 +17,41 @@ $headerCNonceHeader = "X-E5RAuth-CNonce"
 $headerSealedAccessTokenHeader = "X-E5RAuth-SealedAccessToken"
 $headerOCNonceHeader = "X-E5RAuth-OCNonce"
 
+$appId = "4adf130c5332c69c75fba9284ce1d27e"
+$appPK = "194cf821e066ca8708c297691ba15b16fe8c163f0ccabcf26f3eab5fd4c6779d0da6d7aef285255ae45e611c4087e081"
+$instanceId = "678c588f461ca61879d2dc689f425e3f"
+$instanceHost = "localhost"
+
+function get-hashcode([string] $value)
+{
+	$sha1 = new-object system.security.cryptography.SHA1CryptoServiceProvider 
+	$enc = [system.text.encoding]::Unicode
+
+	$hash = $sha1.ComputeHash($enc.GetBytes($value))
+
+	$result = ""
+    foreach ($h in $hash)
+    {
+        $result += [string]::Format("{0:x2}", $h);
+    }
+
+	return $result
+}
+
 if($GetAccessToken)
 {
+# http://stackoverflow.com/questions/27232146/calculating-sha1-hash-algorithm-powershell-v2-0
+# http://stackoverflow.com/questions/8051713/convert-a-string-to-a-byte-array-in-powershell-version-2
+# https://gallery.technet.microsoft.com/scriptcenter/Get-StringHash-aa843f71
+# http://blogs.msdn.com/b/luc/archive/2011/01/21/powershell-getting-the-hash-value-for-a-string.aspx
 	write-host "Getting access token..."
+
+	$seal = get-hashcode "${appId}:${appPK}:${instanceHost}"
 
 	$headers = @{}
 
-	$headers[$headerAppInstanceIdHeader] = "My Test App Instance"
-	$headers[$headerSealHeader] = "Erlimar seal"
+	$headers[$headerAppInstanceIdHeader] = "$instanceId"
+	$headers[$headerSealHeader] = "$seal"
 	$headers["Accept"] = "application/json"
 
 	try{

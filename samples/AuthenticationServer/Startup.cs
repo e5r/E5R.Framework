@@ -21,13 +21,15 @@ namespace AuthenticationServer
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var minLogLevel = string.Equals(env.EnvironmentName, "Development", OrdinalIgnoreCase)
-                ? LogLevel.Verbose
-                : LogLevel.Warning;
+            var isDev = string.Equals(env.EnvironmentName, "Development", OrdinalIgnoreCase);
+            var minLogLevel = isDev ? LogLevel.Verbose : LogLevel.Warning;
 
             loggerFactory.AddConsole(minLogLevel);
 
-            app.UseErrorPage();
+            if (isDev)
+            {
+                app.UseErrorPage();
+            }
             app.UseE5RAuthServer("/session");
         }
     }

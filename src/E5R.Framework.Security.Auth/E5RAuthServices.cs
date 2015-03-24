@@ -12,15 +12,15 @@ namespace E5R.Framework.Security.Auth
         {
             var describer = new ServiceDescriber();
 
-            yield return describer.Singleton<IAuthenticationService, DefaultAuthenticationService>();
-            yield return describer.Singleton<IAuthorizationService, DefaultAuthorizationService>();
+            yield return describer.Singleton<IAuthenticationService, AuthenticationService>();
+            yield return describer.Singleton<IAuthorizationService, AuthorizationService>();
         }
 
         public static IEnumerable<IServiceDescriptor> GetDefaultServerServices()
         {
             var describer = new ServiceDescriber();
 
-            yield return describer.Singleton<IAuthenticationService, DefaultAuthenticationService>();
+            yield return describer.Singleton<IAuthenticationService, AuthenticationService>();
         }
     }
 }

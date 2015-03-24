@@ -9,12 +9,12 @@ using E5R.Framework.Security.Auth.Data;
 
 namespace E5R.Framework.Security.Auth
 {
-    public class DefaultAuthenticationService : IAuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly IDataStorage<AppInstance> _appInstanceStorage;
         private readonly IDataStorage<AccessToken> _accessTokenStorage;
 
-        public DefaultAuthenticationService(IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
+        public AuthenticationService(IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
         {
             _appInstanceStorage = appInstanceStorage;
             _accessTokenStorage = accessTokenStorage;

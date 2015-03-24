@@ -6,7 +6,7 @@ using System.Linq;
 namespace E5R.Framework.Security.Auth
 {
     // TODO: Refactory
-    public class DefaultAuthorizationService : IAuthorizationService
+    public class AuthorizationService : IAuthorizationService
     {
         private readonly string[] _allPermissions = new[] {
             "permission1",

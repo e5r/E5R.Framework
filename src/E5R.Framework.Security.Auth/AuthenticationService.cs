@@ -28,12 +28,12 @@ namespace E5R.Framework.Security.Auth
             }
         }
 
-        AccessToken IAuthenticationService.ConfirmToken(HttpContext context, string appInstanceId, string accessToken, string cNonce)
+        AccessToken IAuthenticationService.ConfirmToken(HttpRequest httpRequest, string appInstanceId, string accessToken, string cNonce)
         {
             throw new NotImplementedException();
         }
 
-        AccessToken IAuthenticationService.GetAccessToken(HttpContext context, string appInstanceId, string seal)
+        AccessToken IAuthenticationService.GetAccessToken(HttpRequest httpRequest, string appInstanceId, string seal)
         {
             var appInstance = _appInstanceStorage.Get(appInstanceId);
 
@@ -41,6 +41,7 @@ namespace E5R.Framework.Security.Auth
                 return null;
 
             // TODO: Validate client host from HttpContext
+            //System.Net.Dns.Resolve(httpRequest.HttpContext)
 
             if (!appInstance.IsOriginalSeal(seal))
                 return null;
@@ -55,7 +56,7 @@ namespace E5R.Framework.Security.Auth
             return _accessTokenStorage.Add(accessToken);
         }
 
-        bool IAuthenticationService.GrantAccess(HttpContext context, string appInstanceId, string sealedAccessTokenValue, string cNonce)
+        bool IAuthenticationService.GrantAccess(HttpRequest httpRequest, string appInstanceId, string sealedAccessTokenValue, string cNonce)
         {
             throw new NotImplementedException();
         }

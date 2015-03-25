@@ -18,6 +18,8 @@ namespace E5R.Framework.Security.Auth
     using static NetUtils.Constants;
     using static HttpAuthUtils;
     using static RequestFluxType;
+    using Microsoft.AspNet.Hosting;
+    using Microsoft.AspNet.Http.Interfaces;
 
     public class AuthenticationServerMiddleware
     {
@@ -104,7 +106,7 @@ namespace E5R.Framework.Security.Auth
             }
         }
 
-        public async Task Invoke(HttpContext context, IAuthenticationService authenticationService)
+        public async Task Invoke(HttpContext context, IHostingEnvironment env,  IAuthenticationService authenticationService)
         {
             RequestFluxType requestType = Unknown;
             HttpAuthResponse response = null;
@@ -112,6 +114,20 @@ namespace E5R.Framework.Security.Auth
 
             try
             {
+                var connection = context.GetFeature<IHttpConnectionFeature>();
+
+                if (connection != null)
+                {
+                    var isLocal = connection.IsLocal;
+                    var localIpAddress = connection.LocalIpAddress;
+                    var localPort = connection.LocalPort;
+                    var remoteIpAddress = connection.RemoteIpAddress;
+                    var remotePort = connection.RemotePort;
+
+                    var remoteHost = System.Net.Dns.GetHostEntry(remoteIpAddress);
+                    var remoteHostName = remoteHost.HostName;
+                }
+
                 requestType = GetRequestFluxType(context, _path);
 
                 if (requestType == RequestAccessToken)
@@ -119,7 +135,7 @@ namespace E5R.Framework.Security.Auth
                     var appInstanceId = headers[HttpAuthAppInstanceIdHeader];
                     var seal = headers[HttpAuthSealHeader];
 
-                    var accessToken = authenticationService.GetAccessToken(context, appInstanceId, seal);
+                    var accessToken = authenticationService.GetAccessToken(context.Request, appInstanceId, seal);
 
                     if (accessToken == null)
                     {
@@ -137,7 +153,7 @@ namespace E5R.Framework.Security.Auth
                     var accessTokenValue = headers[HttpAuthAccessTokenHeader];
                     var cNonce = headers[HttpAuthCNonceHeader];
 
-                    var accessToken = authenticationService.ConfirmToken(context, appInstanceId, accessTokenValue, cNonce);
+                    var accessToken = authenticationService.ConfirmToken(context.Request, appInstanceId, accessTokenValue, cNonce);
 
                     if (accessToken == null)
                     {
@@ -155,7 +171,7 @@ namespace E5R.Framework.Security.Auth
                     var sealedAccessTokenValue = headers[HttpAuthSealedAccessTokenHeader];
                     var cNonce = headers[HttpAuthCNonceHeader];
 
-                    if(!authenticationService.GrantAccess(context, appInstanceId, sealedAccessTokenValue, cNonce))
+                    if(!authenticationService.GrantAccess(context.Request, appInstanceId, sealedAccessTokenValue, cNonce))
                     {
                         response = new HttpUnauthorizedResponse();
                     }

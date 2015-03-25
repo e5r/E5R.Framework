@@ -18,30 +18,30 @@ namespace E5R.Framework.Security.Auth
         /// <summary>
         /// Validate and create a Access Token from request
         /// </summary>
-        /// <param name="context">HTTP context</param>
+        /// <param name="httpRequest">HTTP request context</param>
         /// <param name="appInstanceId"><see cref="AppInstance.Id"/></param>
         /// <param name="seal">SHA(AppID:AppPrivateKey:AppInstanceHost)</param>
         /// <returns><see cref="AccessToken"/> or null if access denied</returns>
-        AccessToken GetAccessToken(HttpContext context, string appInstanceId, string seal);
+        AccessToken GetAccessToken(HttpRequest httpRequest, string appInstanceId, string seal);
 
         /// <summary>
         /// Validate and confirm data token from request
         /// </summary>
-        /// <param name="context">HTTP context</param>
+        /// <param name="httpRequest">HTTP request context</param>
         /// <param name="appInstanceId"><see cref="AppInstance.Id"/></param>
         /// <param name="accessToken"><see cref="AccessToken.Token"/></param>
         /// <param name="cNonce">SHA(AppID:AppPrivateKey:AppInstanceHost:Nonce)</param>
         /// <returns><see cref="AccessToken"/> or null if not confirmed</returns>
-        AccessToken ConfirmToken(HttpContext context, string appInstanceId, string accessToken, string cNonce);
+        AccessToken ConfirmToken(HttpRequest httpRequest, string appInstanceId, string accessToken, string cNonce);
 
         /// <summary>
         /// Grant access to a resource request
         /// </summary>
-        /// <param name="context">HTTP context</param>
+        /// <param name="httpRequest">HTTP request context</param>
         /// <param name="appInstanceId"><see cref="AppInstance.Id"/></param>
         /// <param name="sealedAccessTokenValue"><see cref="AccessToken.Token"/></param>
         /// <param name="cNonce">SHA(<see cref="AppNonceOrder.Template"/>)</param>
         /// <returns><see cref="AccessToken"/> or null if no access</returns>
-        bool GrantAccess(HttpContext context, string appInstanceId, string sealedAccessTokenValue, string cNonce);
+        bool GrantAccess(HttpRequest httpRequest, string appInstanceId, string sealedAccessTokenValue, string cNonce);
     }
 }

@@ -6,3 +6,4 @@ artifacts/
 *.user
 *.sublime-workspace
 debugSettings.json
+*.pubxml

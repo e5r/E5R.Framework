@@ -75,12 +75,6 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
             };
 
             GetDatabase<AppInstance>(logger).Add(defaultAppInstance);
-
-            logger?.WriteVerbose("AppId: {0}", defaultAppInstance.App.StringId);
-            logger?.WriteVerbose("AppPK: {0}", defaultAppInstance.App.PrivateKey);
-
-            logger?.WriteVerbose("InstanceId: {0}", defaultAppInstance.StringId);
-            logger?.WriteVerbose("InstanceHost: {0}", defaultAppInstance.Host);
         }
     }
 }

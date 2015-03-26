@@ -50,16 +50,14 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
 
         public void Remove(IEnumerable<T> data)
         {
-            foreach (var item in data)
-                Remove(item);
+            (All as List<T>)
+                .RemoveAll(where => data.Count(wCount => wCount.GetHashCode() == where.GetHashCode()) > 0);
         }
 
         public void Remove(T data)
         {
-            if (All.Count(where => where.GetHashCode() == data.GetHashCode()) != 1)
-                throw new Exception("Object not found in the database.");
-
-            (All as IList<T>).Remove(data);
+            (All as List<T>)
+                .RemoveAll(where => where.GetHashCode() == data.GetHashCode());
         }
 
         public T Replace(T data)

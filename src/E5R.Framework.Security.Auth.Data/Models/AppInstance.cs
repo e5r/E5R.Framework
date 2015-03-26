@@ -14,10 +14,10 @@ namespace E5R.Framework.Security.Auth.Data.Models
 
         public bool IsOriginalSeal(string seal)
         {
-            var originalSeal = Id<AlgorithmSHA1, UnicodeEncoding>
+            var expectedSeal = Id<AlgorithmSHA1, UnicodeEncoding>
                 .GenerateHash($"{App.Id}:{App.PrivateKey}:{Host}");
 
-            return string.Equals(seal, originalSeal, OrdinalIgnoreCase);
+            return string.Equals(seal, expectedSeal, OrdinalIgnoreCase);
         }
 
         public AppInstance(){}

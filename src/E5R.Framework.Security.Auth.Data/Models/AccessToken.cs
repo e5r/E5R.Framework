@@ -6,6 +6,8 @@ using System.Text;
 
 namespace E5R.Framework.Security.Auth.Data.Models
 {
+    using static System.StringComparison;
+
     public class AccessToken : DataModel<AccessToken, AuthToken, AppInstance>
     {
         public AppInstance AppInstance { get; set; }
@@ -13,15 +15,41 @@ namespace E5R.Framework.Security.Auth.Data.Models
         public bool NonceConfirmed { get; set; }
         public AppNonceOrder AppNonceOrder { get; set; }
 
+        public bool ConfirmNonce(string cNonce)
+        {
+            var expectedCNonce = Id<AlgorithmSHA1, UnicodeEncoding>
+                .GenerateHash($"{AppInstance.App.Id}:{AppInstance.App.PrivateKey}:{AppInstance.Host}:{Nonce}");
+
+            if (string.Equals(cNonce, expectedCNonce, OrdinalIgnoreCase))
+            {
+                // Regenerate Nonce
+                var newNonce = GenerateNonce();
+
+                NonceConfirmed = !string.Equals(newNonce, Nonce, OrdinalIgnoreCase);
+
+                if(!NonceConfirmed)
+                    throw new Exception("Duplicated nonce generation.");
+
+                Nonce = newNonce;
+            }
+
+            return NonceConfirmed;
+        }
+
+        private string GenerateNonce()
+        {
+            var time = DateTime.UtcNow;
+            var template = $"{time.ToBinary().ToString("x2")}:{time.Ticks.ToString("x2")}";
+            return Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash(template);
+        }
+
         public AccessToken(){}
 
         public AccessToken(AppInstance appInstance)
         {
             Id = new AuthToken();
             AppInstance = appInstance;
-
-            var time = DateTime.UtcNow;
-            Nonce = Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash($"{time.ToBinary().ToString("x2")}:{time.Ticks.ToString("x2")}");
+            Nonce = GenerateNonce();
         }
     }
 }

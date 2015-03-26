@@ -31,7 +31,24 @@ namespace E5R.Framework.Security.Auth
 
         AccessToken IAuthenticationService.ConfirmToken(HttpRequest httpRequest, string appInstanceId, string accessToken, string cNonce)
         {
-            throw new NotImplementedException();
+            var appInstance = _appInstanceStorage.Get(appInstanceId);
+
+            if (appInstance == null)
+                return null;
+
+            // TODO: Validate client host from HttpContext
+            // httpRequest.HttpContext.GetFeature<IHttpConnectionFeature>().RemoteIpAddress;
+
+            var accessTokenFound = _accessTokenStorage.All.SingleOrDefault(where => 
+                where.AppInstance.Id == appInstance.Id && where.StringId == accessToken);
+
+            if (accessTokenFound == null)
+                return null;
+
+            if (!accessTokenFound.ConfirmNonce(cNonce))
+                return null;
+
+            return _accessTokenStorage.Replace(accessTokenFound);
         }
 
         AccessToken IAuthenticationService.GetAccessToken(HttpRequest httpRequest, string appInstanceId, string seal)

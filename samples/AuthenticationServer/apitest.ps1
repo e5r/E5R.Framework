@@ -28,6 +28,9 @@ $instanceId = "678c588f461ca61879d2dc689f425e3f"
 $instanceHost = "localhost"
 
 $accessToken = ""
+$sealedAccessToken = ""
+$accessNonce = ""
+$accessOCNonce = ""
 
 function get-hashcode([string] $value)
 {
@@ -47,7 +50,7 @@ function get-hashcode([string] $value)
 
 # GetAccessToken
 # {
-	write-host "Getting access token..."
+	write-host "`nGetting access token..."
 
 	$seal = get-hashcode "${appId}:${appPK}:${instanceHost}"
 
@@ -58,7 +61,19 @@ function get-hashcode([string] $value)
 	$headers["Accept"] = "application/json"
 
 	try{
-		invoke-webrequest -uri "$baseUrl/session" -method POST  -useragent $userAgent  -headers $headers
+		$r = invoke-webrequest -uri "$baseUrl/session" -method POST  -useragent $userAgent  -headers $headers
+		
+		if($r.StatusCode -eq 201){
+			write-host "    Access Token created!"
+
+			$accessToken = $r.Headers[$headerAccessTokenHeader]
+			$accessNonce = $r.Headers[$headerNonceHeader]
+
+			write-host "    {"
+			write-host "        Token: ${accessToken}"
+			write-host "        Nonce: ${accessNonce}"
+			write-host "    }"
+		}
 	}
 	catch [system.net.webexception]
 	{
@@ -70,17 +85,43 @@ function get-hashcode([string] $value)
 
 # ConfirmAccessToken
 # {
-	write-host "Confirming access token"
+	write-host "`nConfirming access token"
+
+	$cnonceTemplate = "${appId}:${appPK}:${instanceHost}:${accessNonce}"
+	$cnonce = get-hashcode  "${cnonceTemplate}"
+
+	write-host "    CNonce: ${cnonceTemplate}"
+	write-host "    CNonceHash: ${cnonce}"
 
 	$headers = @{}
 
-	$headers[$headerAppInstanceIdHeader] = "MyAppID"
-	$headers[$headerAccessTokenHeader] = "MyAccessToken"
-	$headers[$headerCNonceHeader] = "MyCNonce"
+	$headers[$headerAppInstanceIdHeader] = "$instanceId"
+	$headers[$headerAccessTokenHeader] = "$accessToken"
+	$headers[$headerCNonceHeader] = "$cnonce"
 	$headers["Accept"] = "application/json"
 
 	try{
-		invoke-webrequest -uri "$baseUrl/session" -method PUT  -useragent $userAgent  -headers $headers
+		$r = invoke-webrequest -uri "$baseUrl/session" -method PUT  -useragent $userAgent  -headers $headers
+
+		if($r.StatusCode -eq 202){
+			write-host "    Access Token confirmed!"
+
+			$accessToken = $r.Headers[$headerAccessTokenHeader]
+			$accessNonce = $r.Headers[$headerNonceHeader]
+
+			$sealedAccessToken = $r.Headers[$headerSealedAccessTokenHeader]
+			$oldAccessNonce = $accessNonce
+			write-host "*** ${oldAccessNonce}"
+			$accessNonce = $r.Headers[$headerNonceHeader]
+			$accessOCNonce = $r.Headers[$headerOCNonceHeader]
+
+			write-host "    {"
+			write-host "        SealedToken: ${sealedAccessToken}"
+			write-host "        OldNonce: ${oldAccessNonce}"
+			write-host "        Nonce: ${accessNonce}"
+			write-host "        OCNonce: ${accessOCNonce}"
+			write-host "    }"
+		}
 	}
 	catch [system.net.webexception]
 	{

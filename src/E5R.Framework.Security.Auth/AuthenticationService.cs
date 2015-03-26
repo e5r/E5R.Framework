@@ -6,6 +6,7 @@ using System.Linq;
 using E5R.Framework.Security.Auth.Data.Models;
 using Microsoft.AspNet.Http;
 using E5R.Framework.Security.Auth.Data;
+//using Microsoft.AspNet.Http.Interfaces;
 
 namespace E5R.Framework.Security.Auth
 {
@@ -41,7 +42,7 @@ namespace E5R.Framework.Security.Auth
                 return null;
 
             // TODO: Validate client host from HttpContext
-            //System.Net.Dns.Resolve(httpRequest.HttpContext)
+            // httpRequest.HttpContext.GetFeature<IHttpConnectionFeature>().RemoteIpAddress;
 
             if (!appInstance.IsOriginalSeal(seal))
                 return null;

@@ -19,7 +19,6 @@ namespace E5R.Framework.Security.Auth
     using static HttpAuthUtils;
     using static RequestFluxType;
     using Microsoft.AspNet.Hosting;
-    using Microsoft.AspNet.Http.Interfaces;
 
     public class AuthenticationServerMiddleware
     {

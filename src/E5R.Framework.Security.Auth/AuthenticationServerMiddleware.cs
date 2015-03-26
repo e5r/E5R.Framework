@@ -114,20 +114,6 @@ namespace E5R.Framework.Security.Auth
 
             try
             {
-                var connection = context.GetFeature<IHttpConnectionFeature>();
-
-                if (connection != null)
-                {
-                    var isLocal = connection.IsLocal;
-                    var localIpAddress = connection.LocalIpAddress;
-                    var localPort = connection.LocalPort;
-                    var remoteIpAddress = connection.RemoteIpAddress;
-                    var remotePort = connection.RemotePort;
-
-                    var remoteHost = System.Net.Dns.GetHostEntry(remoteIpAddress);
-                    var remoteHostName = remoteHost.HostName;
-                }
-
                 requestType = GetRequestFluxType(context, _path);
 
                 if (requestType == RequestAccessToken)

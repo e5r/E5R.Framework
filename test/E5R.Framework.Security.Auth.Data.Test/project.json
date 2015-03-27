@@ -9,7 +9,6 @@
         "**.vspscc"
     ],
     "dependencies": {
-        //rc2-build2857
         "xunit":"2.0.0-rc2-*",
         "xunit.runner.aspnet": "2.0.0-rc2-*",
         "xunit.runner.visualstudio": "2.0.0-rc2-*",

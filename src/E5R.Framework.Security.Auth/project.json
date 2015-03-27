@@ -21,7 +21,6 @@
         "aspnetcore50": {
             "System.Runtime": "4.0.20-beta-*",
             "System.Reflection": "4.0.10-beta-*",
-            //"System.Reflection.Primitives": "4.0.0-beta-*",
             "System.Reflection.Extensions": "4.0.0-beta-*",
             "System.Reflection.TypeExtensions": "4.0.0-beta-*",
             "System.Collections": "4.0.10-beta-*"

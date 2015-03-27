@@ -12,7 +12,9 @@
         "aspnet50" : {},
         "aspnetcore50" : { 
             "dependencies": {
-                "System.Runtime": "4.0.20-beta-*"
+                "System.Runtime": "4.0.20-beta-*",
+                "System.Dynamic.Runtime": "4.0.0-beta-*",
+                "Microsoft.CSharp": "4.0.0-beta-*"
             }
         }
     }

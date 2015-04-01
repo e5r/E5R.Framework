@@ -34,7 +34,7 @@ $accessOCNonce = ""
 
 function get-hashcode([string] $value)
 {
-	$sha1 = new-object system.security.cryptography.SHA1CryptoServiceProvider 
+	$sha1 = new-object system.security.cryptography.SHA1CryptoServiceProvider
 	$enc = [system.text.encoding]::Unicode
 
 	$hash = $sha1.ComputeHash($enc.GetBytes($value))
@@ -62,7 +62,7 @@ function get-hashcode([string] $value)
 
 	try{
 		$r = invoke-webrequest -uri "$baseUrl/session" -method POST  -useragent $userAgent  -headers $headers
-		
+
 		if($r.StatusCode -eq 201){
 			write-host "    Access Token created!"
 
@@ -85,13 +85,10 @@ function get-hashcode([string] $value)
 
 # ConfirmAccessToken
 # {
-	write-host "`nConfirming access token"
+	write-host "`nConfirming access token..."
 
 	$cnonceTemplate = "${appId}:${appPK}:${instanceHost}:${accessNonce}"
 	$cnonce = get-hashcode  "${cnonceTemplate}"
-
-	write-host "    CNonce: ${cnonceTemplate}"
-	write-host "    CNonceHash: ${cnonce}"
 
 	$headers = @{}
 
@@ -106,12 +103,10 @@ function get-hashcode([string] $value)
 		if($r.StatusCode -eq 202){
 			write-host "    Access Token confirmed!"
 
+      $oldAccessNonce = $accessNonce
 			$accessToken = $r.Headers[$headerAccessTokenHeader]
 			$accessNonce = $r.Headers[$headerNonceHeader]
-
 			$sealedAccessToken = $r.Headers[$headerSealedAccessTokenHeader]
-			$oldAccessNonce = $accessNonce
-			write-host "*** ${oldAccessNonce}"
 			$accessNonce = $r.Headers[$headerNonceHeader]
 			$accessOCNonce = $r.Headers[$headerOCNonceHeader]
 

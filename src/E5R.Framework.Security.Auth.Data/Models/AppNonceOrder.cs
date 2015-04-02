@@ -59,5 +59,12 @@ namespace E5R.Framework.Security.Auth.Data.Models
             App = app;
             Template = GenerateTemplateRandom();
         }
+
+        public AppNonceOrder(App app, string template)
+        {
+            Id = new AuthId();
+            App = app;
+            Template = template;
+        }
     }
 }

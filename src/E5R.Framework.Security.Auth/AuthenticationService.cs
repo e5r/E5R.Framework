@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using E5R.Framework.Security.Auth.Data.Models;
 using Microsoft.AspNet.Http;
+using Microsoft.Framework.Logging;
 using E5R.Framework.Security.Auth.Data;
 //using Microsoft.AspNet.Http.Interfaces;
 
@@ -14,9 +15,13 @@ namespace E5R.Framework.Security.Auth
     {
         private readonly IDataStorage<AppInstance> _appInstanceStorage;
         private readonly IDataStorage<AccessToken> _accessTokenStorage;
+        private readonly ILogger _logger;
 
-        public AuthenticationService(IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
+        public AuthenticationService(ILoggerFactory loggerFactory, IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
         {
+            var loggerName = GetType().FullName.Split('.').LastOrDefault();
+
+            _logger = loggerFactory.Create(loggerName);
             _appInstanceStorage = appInstanceStorage;
             _accessTokenStorage = accessTokenStorage;
         }
@@ -39,16 +44,24 @@ namespace E5R.Framework.Security.Auth
             // TODO: Validate client host from HttpContext
             // httpRequest.HttpContext.GetFeature<IHttpConnectionFeature>().RemoteIpAddress;
 
+            // TODO: Validate timestamp/expired
             var accessTokenFound = _accessTokenStorage.All.SingleOrDefault(where => 
                 where.AppInstance.Id == appInstance.Id && where.StringId == accessToken);
 
             if (accessTokenFound == null)
                 return null;
 
-            if (!accessTokenFound.ConfirmNonce(cNonce))
+            // Regenerate Token
+            var sealedToken = accessTokenFound.Seal(cNonce);
+
+            if (sealedToken == null)
                 return null;
 
-            return _accessTokenStorage.Replace(accessTokenFound);
+            _logger.WriteInformation("SealedToken: {0}, NonceOrder: {1}", sealedToken.StringId, sealedToken.AppNonceOrder.Template);
+
+            _accessTokenStorage.Remove(accessTokenFound);
+
+            return _accessTokenStorage.Add(sealedToken);
         }
 
         AccessToken IAuthenticationService.GetAccessToken(HttpRequest httpRequest, string appInstanceId, string seal)
@@ -68,8 +81,6 @@ namespace E5R.Framework.Security.Auth
             _accessTokenStorage.Remove(_accessTokenStorage.All.Where(x => x.AppInstance.Id == appInstance.Id));
 
             var accessToken = AccessToken.Create(appInstance);
-
-            accessToken.AppNonceOrder = appInstance.App.GetRamdonNonceOrder();
 
             return _accessTokenStorage.Add(accessToken);
         }

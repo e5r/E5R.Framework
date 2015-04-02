@@ -15,25 +15,24 @@ namespace E5R.Framework.Security.Auth.Data.Models
         public bool NonceConfirmed { get; set; }
         public AppNonceOrder AppNonceOrder { get; set; }
 
-        public bool ConfirmNonce(string cNonce)
+        public AccessToken Seal(string cNonce)
+        {
+            if (!ConfirmNonce(cNonce))
+                return null;
+
+            return new AccessToken(AppInstance)
+            {
+                NonceConfirmed = true,
+                AppNonceOrder = AppInstance.App.GetRamdonNonceOrder()
+            };
+        }
+
+        private bool ConfirmNonce(string cNonce)
         {
             var expectedCNonce = Id<AlgorithmSHA1, UnicodeEncoding>
                 .GenerateHash($"{AppInstance.App.Id}:{AppInstance.App.PrivateKey}:{AppInstance.Host}:{Nonce}");
 
-            if (string.Equals(cNonce, expectedCNonce, OrdinalIgnoreCase))
-            {
-                // Regenerate Nonce
-                var newNonce = GenerateNonce();
-
-                NonceConfirmed = !string.Equals(newNonce, Nonce, OrdinalIgnoreCase);
-
-                if(!NonceConfirmed)
-                    throw new Exception("Duplicated nonce generation.");
-
-                Nonce = newNonce;
-            }
-
-            return NonceConfirmed;
+            return string.Equals(cNonce, expectedCNonce, OrdinalIgnoreCase);
         }
 
         private string GenerateNonce()

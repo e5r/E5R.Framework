@@ -27,6 +27,24 @@ $appPK = "194cf821e066ca8708c297691ba15b16fe8c163f0ccabcf26f3eab5fd4c6779d0da6d7
 $instanceId = "678c588f461ca61879d2dc689f425e3f"
 $instanceHost = "localhost"
 
+$appNonceOrders = @(
+	"{AppID}:{AppPrivateKey}:{Nonce}:{AppInstanceHost}:{SealedAccessToken}",
+	"{AppID}:{Nonce}:{AppInstanceHost}:{SealedAccessToken}:{AppPrivateKey}",
+	"{AppID}:{SealedAccessToken}:{Nonce}:{AppInstanceHost}:{AppPrivateKey}",
+	"{AppInstanceHost}:{AppID}:{Nonce}:{AppPrivateKey}:{SealedAccessToken}",
+	"{AppInstanceHost}:{SealedAccessToken}:{AppID}:{Nonce}:{AppPrivateKey}",
+	"{AppInstanceHost}:{SealedAccessToken}:{Nonce}:{AppID}:{AppPrivateKey}",
+	"{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{AppID}:{Nonce}",
+	"{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{Nonce}:{AppID}",
+	"{AppPrivateKey}:{Nonce}:{AppInstanceHost}:{AppID}:{SealedAccessToken}",
+	"{AppPrivateKey}:{Nonce}:{SealedAccessToken}:{AppID}:{AppInstanceHost}",
+	"{Nonce}:{AppInstanceHost}:{AppID}:{AppPrivateKey}:{SealedAccessToken}",
+	"{Nonce}:{AppInstanceHost}:{AppPrivateKey}:{SealedAccessToken}:{AppID}",
+	"{SealedAccessToken}:{AppInstanceHost}:{AppID}:{AppPrivateKey}:{Nonce}",
+	"{SealedAccessToken}:{AppPrivateKey}:{AppInstanceHost}:{AppID}:{Nonce}",
+	"{SealedAccessToken}:{Nonce}:{AppInstanceHost}:{AppPrivateKey}:{AppID}"
+)
+
 $accessToken = ""
 $sealedAccessToken = ""
 $accessNonce = ""

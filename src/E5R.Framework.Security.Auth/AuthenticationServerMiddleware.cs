@@ -3,6 +3,7 @@
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -18,7 +19,6 @@ namespace E5R.Framework.Security.Auth
     using static NetUtils.Constants;
     using static HttpAuthUtils;
     using static RequestFluxType;
-    using Microsoft.AspNet.Hosting;
 
     public class AuthenticationServerMiddleware
     {

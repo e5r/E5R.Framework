@@ -4,6 +4,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 
 namespace E5R.Framework.Security.Auth.Data.Models
 {
@@ -18,6 +19,46 @@ namespace E5R.Framework.Security.Auth.Data.Models
 
         public IEnumerable<AppNonceOrder> NonceOrders { get; set; }
 
+        /// <summary>
+        /// Generate a config information for use in client app.
+        /// </summary>
+        /// <example>
+        /// {
+        ///     "AppId": "#ref App.Id",
+        ///     "PrivateKey": "#ref App.PrivateKey",
+        ///     "NonceOrders": [
+        ///         "#ref App.NonceOrders.AppNonceOrder.Template"
+        ///     ]
+        /// }
+        /// </example>
+        /// <returns>Config Information</returns>
+        public string SerializedConfigInfo
+        {
+            get
+            {
+                var builder = new StringBuilder()
+                    .AppendLine("{")
+                    .AppendLine($"    \"AppId\": \"{ Id }\",")
+                    .AppendLine($"    \"PrivateKey\": \"{ PrivateKey }\",")
+                    .AppendLine($"    \"NonceOrders\": [");
+
+                var indexMax = NonceOrders.Count() - 1;
+                for (var index = 0; !(index > indexMax); index++)
+                {
+                    var order = NonceOrders.ElementAt(index);
+                    var comma = index < indexMax ? "," : string.Empty;
+
+                    builder.AppendLine($"        \"{ order.Template }\"{ comma }");
+                }
+
+                builder
+                    .AppendLine("    ]")
+                    .AppendLine("}");
+
+                return builder.ToString();
+            }
+        }
+
         public static App Create()
         {
             var app = new App()
@@ -26,19 +67,26 @@ namespace E5R.Framework.Security.Auth.Data.Models
                 PrivateKey = new AuthToken()
             };
 
-            app.NonceOrders = GenerateNonceOrders(app);
+            app.GenerateNonceOrders();
 
             return app;
         }
 
-        public static IEnumerable<AppNonceOrder> GenerateNonceOrders(App app)
+        public void GenerateNonceOrders()
         {
+            NonceOrders = new List<AppNonceOrder>();
+
             // TODO: Change to PRIVATE after InMemoryDatabase.Seed use [Startup.cs].Configure
-            yield return AppNonceOrder.Create(app);
-            yield return AppNonceOrder.Create(app);
-            yield return AppNonceOrder.Create(app);
-            yield return AppNonceOrder.Create(app);
-            yield return AppNonceOrder.Create(app);
+            for (var count = 1; !(count > 15);)
+            {
+                var nonceOrder = AppNonceOrder.Create(this);
+
+                if(NonceOrders.Count(where => where.Template == nonceOrder.Template) == 0)
+                {
+                    (NonceOrders as IList<AppNonceOrder>).Add(nonceOrder);
+                    count++;
+                }
+            }
         }
 
         public AppNonceOrder GetRamdonNonceOrder()

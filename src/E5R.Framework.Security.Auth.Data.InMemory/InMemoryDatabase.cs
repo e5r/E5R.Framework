@@ -59,7 +59,28 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
                 Description = "A default App for InMemory tests"
             };
 
-            defaultApp.NonceOrders = App.GenerateNonceOrders(defaultApp);
+            defaultApp.NonceOrders = new List<AppNonceOrder>();
+
+            foreach(var template in new[] {
+                "{AppID}:{AppPrivateKey}:{Nonce}:{AppInstanceHost}:{SealedAccessToken}",
+                "{AppID}:{Nonce}:{AppInstanceHost}:{SealedAccessToken}:{AppPrivateKey}",
+                "{AppID}:{SealedAccessToken}:{Nonce}:{AppInstanceHost}:{AppPrivateKey}",
+                "{AppInstanceHost}:{AppID}:{Nonce}:{AppPrivateKey}:{SealedAccessToken}",
+                "{AppInstanceHost}:{SealedAccessToken}:{AppID}:{Nonce}:{AppPrivateKey}",
+                "{AppInstanceHost}:{SealedAccessToken}:{Nonce}:{AppID}:{AppPrivateKey}",
+                "{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{AppID}:{Nonce}",
+                "{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{Nonce}:{AppID}",
+                "{AppPrivateKey}:{Nonce}:{AppInstanceHost}:{AppID}:{SealedAccessToken}",
+                "{AppPrivateKey}:{Nonce}:{SealedAccessToken}:{AppID}:{AppInstanceHost}",
+                "{Nonce}:{AppInstanceHost}:{AppID}:{AppPrivateKey}:{SealedAccessToken}",
+                "{Nonce}:{AppInstanceHost}:{AppPrivateKey}:{SealedAccessToken}:{AppID}",
+                "{SealedAccessToken}:{AppInstanceHost}:{AppID}:{AppPrivateKey}:{Nonce}",
+                "{SealedAccessToken}:{AppPrivateKey}:{AppInstanceHost}:{AppID}:{Nonce}",
+                "{SealedAccessToken}:{Nonce}:{AppInstanceHost}:{AppPrivateKey}:{AppID}"
+            })
+            {
+                (defaultApp.NonceOrders as IList<AppNonceOrder>).Add(new AppNonceOrder(defaultApp, template));
+            }
 
             GetDatabase<App>(logger).Add(defaultApp);
 

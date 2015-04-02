@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Web", "samples\E5R.Framework.Security.Auth.Web\E5R.Framework.Security.Auth.Web.kproj", "{7B27E284-E04B-482A-972F-1F23C8F80A79}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Web", "sample\E5R.Framework.Security.Auth.Web\E5R.Framework.Security.Auth.Web.kproj", "{7B27E284-E04B-482A-972F-1F23C8F80A79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0D04485E-DDD3-41C5-BDBD-E30B91CC4884}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{0D04485E-DDD3-41C5-BDBD-E30B91CC4884}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{E7ED6AE8-E89C-4D95-B5FB-250F794C4B76}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,7 +31,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Test", "test\E5R.Framework.Security.Auth.Test\E5R.Framework.Security.Auth.Test.kproj", "{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthenticationServer", "samples\AuthenticationServer\AuthenticationServer.kproj", "{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthenticationServer", "sample\AuthenticationServer\AuthenticationServer.kproj", "{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".e5r", ".e5r", "{3B809C45-7EB3-4037-9238-22169D24988A}"
 	ProjectSection(SolutionItems) = preProject

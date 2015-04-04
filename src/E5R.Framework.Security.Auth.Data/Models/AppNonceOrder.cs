@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace E5R.Framework.Security.Auth.Data.Models
@@ -17,14 +18,21 @@ namespace E5R.Framework.Security.Auth.Data.Models
         /// {AppID}:{AppPrivateKey}:{AppInstanceHost}:{SealedAccessToken}:{Nonce}
         /// </example>
         public string Template { get; set; }
-        public string GenerateHash(AccessToken accessToken)
+
+        public string GenerateTemplateHash()
+        {
+            return Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash(Template);
+        }
+
+        public string GenerateNonceFromAccessToken(AccessToken accessToken)
         {
             var hashString = Template
                 .Replace("{AppID}", accessToken.AppInstance.App.Id.ToString())
                 .Replace("{AppPrivateKey}", accessToken.AppInstance.App.PrivateKey.ToString())
-                .Replace("{AppInstancehost}", accessToken.AppInstance.Host)
+                .Replace("{AppInstanceHost}", accessToken.AppInstance.Host)
                 .Replace("{SealedAccessToken}", accessToken.Id.ToString())
                 .Replace("{Nonce}", accessToken.Nonce);
+
             return Id<AlgorithmSHA1, UnicodeEncoding>.GenerateHash(hashString);
         }
 

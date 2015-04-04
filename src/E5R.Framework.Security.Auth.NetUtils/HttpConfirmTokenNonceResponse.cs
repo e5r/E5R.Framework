@@ -23,7 +23,7 @@ namespace E5R.Framework.Security.Auth.NetUtils
 
             SealedAccessToken = accessToken.Id.ToString();
             Nonce = accessToken.Nonce;
-            OCNonce = accessToken.AppNonceOrder.GenerateHash(accessToken);
+            OCNonce = accessToken.AppNonceOrder.GenerateTemplateHash();
         }
     }
 }

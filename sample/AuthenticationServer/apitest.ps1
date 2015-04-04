@@ -5,7 +5,7 @@ param(
 	[int]$portNumber = 3000
 )
 
-$baseUrl = "http://$hostName"
+$baseUrl = "http://${hostName}"
 
 if($portNumber -ne 80){
     $baseUrl = "${baseUrl}:${portNumber}"
@@ -66,6 +66,32 @@ function get-hashcode([string] $value)
 	return $result
 }
 
+#{AppID}:{AppPrivateKey}:{Nonce}:{AppInstanceHost}:{SealedAccessToken}
+$cNonceResource = ""
+function get-cnonceresource()
+{
+	if($cNonceResource -eq ""){
+		foreach($template in $appNonceOrders){
+			$hash = get-hashcode $template
+
+			if($hash -eq $accessOCNonce){				
+			    write-host "    -> Using template: ${template}"
+
+				$data = $template
+				$data = $data -replace "{AppID}", "${appId}"
+				$data = $data -replace "{AppPrivateKey}", "${appPK}"
+				$data = $data -replace "{Nonce}", "${accessNonce}"
+				$data = $data -replace "{AppInstanceHost}", "${instanceHost}"
+				$data = $data -replace "{SealedAccessToken}", "${sealedAccessToken}"
+
+				$cNonceResource = get-hashcode $data
+			}
+		}
+	}
+	write-host "    -> Using CNonce: ${cNonceResource}"
+	return $cNonceResource
+}
+
 # GetAccessToken
 # {
 	write-host "`nGetting access token..."
@@ -74,12 +100,12 @@ function get-hashcode([string] $value)
 
 	$headers = @{}
 
-	$headers[$headerAppInstanceIdHeader] = "$instanceId"
-	$headers[$headerSealHeader] = "$seal"
+	$headers[$headerAppInstanceIdHeader] = "${instanceId}"
+	$headers[$headerSealHeader] = "${seal}"
 	$headers["Accept"] = "application/json"
 
 	try{
-		$r = invoke-webrequest -uri "$baseUrl/session" -method POST  -useragent $userAgent  -headers $headers
+		$r = invoke-webrequest -uri "${baseUrl}/session" -method POST  -useragent $userAgent  -headers $headers
 
 		if($r.StatusCode -eq 201){
 			write-host "    Access Token created!"
@@ -110,18 +136,18 @@ function get-hashcode([string] $value)
 
 	$headers = @{}
 
-	$headers[$headerAppInstanceIdHeader] = "$instanceId"
-	$headers[$headerAccessTokenHeader] = "$accessToken"
-	$headers[$headerCNonceHeader] = "$cnonce"
+	$headers[$headerAppInstanceIdHeader] = "${instanceId}"
+	$headers[$headerAccessTokenHeader] = "${accessToken}"
+	$headers[$headerCNonceHeader] = "${cnonce}"
 	$headers["Accept"] = "application/json"
 
 	try{
-		$r = invoke-webrequest -uri "$baseUrl/session" -method PUT  -useragent $userAgent  -headers $headers
+		$r = invoke-webrequest -uri "${baseUrl}/session" -method PUT  -useragent $userAgent  -headers $headers
 
 		if($r.StatusCode -eq 202){
 			write-host "    Access Token confirmed!"
 
-      $oldAccessNonce = $accessNonce
+			$oldAccessNonce = $accessNonce
 			$accessToken = $r.Headers[$headerAccessTokenHeader]
 			$accessNonce = $r.Headers[$headerNonceHeader]
 			$sealedAccessToken = $r.Headers[$headerSealedAccessTokenHeader]
@@ -145,17 +171,28 @@ function get-hashcode([string] $value)
 
 # GetResource
 # {
-	write-host "Getting resource..."
+	write-host "`nGetting resource..."
 
 	$headers = @{}
 
-	$headers[$headerAppInstanceIdHeader] = "MyAppID"
-	$headers[$headerSealedAccessTokenHeader] = "MySealedAccessToken"
-	$headers[$headerCNonceHeader] = "MyCNonce"
+	$headers[$headerAppInstanceIdHeader] = "${instanceId}"
+	$headers[$headerSealedAccessTokenHeader] = "${sealedAccessToken}"
+	$headers[$headerCNonceHeader] = get-cnonceresource
 	$headers["Accept"] = "application/json"
 
 	try{
-		invoke-webrequest -uri "$baseUrl/resource" -method GET  -useragent $userAgent  -headers $headers
+		$r = invoke-webrequest -uri "${baseUrl}/any/resource" -method GET  -useragent $userAgent  -headers $headers
+
+		if($r.StatusCode -ne 401){
+			write-host "    Feature available!`n"
+
+			foreach($h in $r.Headers){
+				$hValue = $r.Headers[$h]
+				write-host "    ${h}: ${hValue}"
+			}
+			
+			$r | write-host
+		}
 	}
 	catch [system.net.webexception]
 	{

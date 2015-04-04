@@ -31,6 +31,8 @@ namespace AuthenticationServer
                 app.UseErrorPage();
             }
             app.UseE5RAuthServer("/session");
+
+            app.UseWelcomePage();
         }
     }
 }

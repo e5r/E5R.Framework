@@ -186,9 +186,11 @@ function get-cnonceresource()
 		if($r.StatusCode -ne 401){
 			write-host "    Feature available!`n"
 
-			foreach($h in $r.Headers){
+			foreach($h in $r.Headers.Keys){
 				$hValue = $r.Headers[$h]
-				write-host "    ${h}: ${hValue}"
+				if($hValue){
+					write-host "    ${h}: ${hValue}"
+				}
 			}
 			
 			$r | write-host

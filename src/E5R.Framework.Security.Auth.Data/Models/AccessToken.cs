@@ -35,7 +35,7 @@ namespace E5R.Framework.Security.Auth.Data.Models
             return string.Equals(cNonce, expectedCNonce, OrdinalIgnoreCase);
         }
 
-        private bool ConfirmNonceByNonceOrder(string cNonce)
+        public bool ConfirmNonceByNonceOrder(string cNonce)
         {
             var expectedCNonce = AppNonceOrder.GenerateNonceFromAccessToken(this);
 

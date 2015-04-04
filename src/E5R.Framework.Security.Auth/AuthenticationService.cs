@@ -85,9 +85,29 @@ namespace E5R.Framework.Security.Auth
             return _accessTokenStorage.Add(accessToken);
         }
 
-        bool IAuthenticationService.GrantAccess(HttpRequest httpRequest, string appInstanceId, string sealedAccessTokenValue, string cNonce)
+        bool IAuthenticationService.GrantAccess(HttpRequest httpRequest, string appInstanceId, string sealedAccessToken, string cNonce)
         {
-            throw new NotImplementedException();
+            var appInstance = _appInstanceStorage.Get(appInstanceId);
+
+            if (appInstance == null)
+                return false;
+
+            // TODO: Validate client host from HttpContext
+            // httpRequest.HttpContext.GetFeature<IHttpConnectionFeature>().RemoteIpAddress;
+
+            // TODO: Validate timestamp/expired
+            var accessTokenFound = _accessTokenStorage.All.SingleOrDefault(where =>
+                where.AppInstance.Id == appInstance.Id && where.StringId == sealedAccessToken && where.NonceConfirmed);
+
+            if (accessTokenFound == null)
+                return false;
+
+            if (!accessTokenFound.ConfirmNonceByNonceOrder(cNonce))
+                return false;
+
+            // TODO: Validate app permissions
+
+            return true;
         }
     }
 }

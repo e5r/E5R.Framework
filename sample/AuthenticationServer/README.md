@@ -1,5 +1,7 @@
 # Authentication Server Notes
 
+Se você está buscando informações sobre recursos, leia [RESOURCE](RESOURCE.md).
+
 ## Flux
 
 ### Request 1

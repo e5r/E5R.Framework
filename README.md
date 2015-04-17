@@ -12,6 +12,7 @@ E5R Framework for .NET components. Confira a documentação na [Wiki][1]
   * [Windows batch file language support in Atom][8]
   * [PowerShell language support for Atom][9]
   * [language-sake][10]
+* [Dia Diagram Editor][11]
 
 [1]: https://github.com/e5r/e5r.framework/wiki
 [2]: http://www.visualstudio.com/pt-br/downloads/visual-studio-2015-downloads-vs
@@ -23,3 +24,4 @@ E5R Framework for .NET components. Confira a documentação na [Wiki][1]
 [8]: https://atom.io/packages/language-batchfile
 [9]: https://atom.io/packages/language-powershell
 [10]: https://atom.io/packages/language-sake
+[11]: http://dia-installer.de

@@ -1,29 +1,29 @@
 {
-    "authors": [ "E5R Development Team" ],
-    "description": "Authentication and Authorization component for E5R Framework",
-    "version": "1.0.0-*",
-    "exclude": [ ],
-    "packExclude": [
-        "**.kproj",
-        "**.user",
-        "**.vspscc"
-    ],
-    "dependencies": {
-        "E5R.Framework.Security.Auth.Data": "",
-        "E5R.Framework.Security.Auth.NetUtils": "",
-        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta3",
-        "Newtonsoft.Json": "7.0.1-beta-*",
-        "Microsoft.Framework.Logging": "1.0.0-beta3"
-    },
-    "commands": { },
-    "frameworks": {
-        "aspnet50": { },
-        "aspnetcore50": {
-            "System.Runtime": "4.0.20-beta-*",
-            "System.Reflection": "4.0.10-beta-*",
-            "System.Reflection.Extensions": "4.0.0-beta-*",
-            "System.Reflection.TypeExtensions": "4.0.0-beta-*",
-            "System.Collections": "4.0.10-beta-*"
-        }
+  "authors": [ "E5R Development Team" ],
+  "description": "Authentication and Authorization component for E5R Framework",
+  "version": "1.0.0-*",
+  "exclude": [ ],
+  "packExclude": [
+    "**.kproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "dependencies": {
+    "E5R.Framework.Security.Auth.Data": "",
+    "E5R.Framework.Security.Auth.NetUtils": "",
+    "Microsoft.AspNet.Mvc.Core": "6.0.0-beta4",
+    "Newtonsoft.Json": "7.0.1-beta-*",
+    "Microsoft.Framework.Logging.Interfaces": "1.0.0-beta4"
+  },
+  "commands": { },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "System.Runtime": "4.0.20-beta-*",
+      "System.Reflection": "4.0.10-beta-*",
+      "System.Reflection.Extensions": "4.0.0-beta-*",
+      "System.Reflection.TypeExtensions": "4.0.0-beta-*",
+      "System.Collections": "4.0.10-beta-*"
     }
+  }
 }

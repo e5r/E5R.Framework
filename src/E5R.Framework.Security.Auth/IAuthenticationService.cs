@@ -29,7 +29,7 @@ namespace E5R.Framework.Security.Auth
         /// </summary>
         /// <param name="httpRequest">HTTP request context</param>
         /// <param name="appInstanceId"><see cref="AppInstance.Id"/></param>
-        /// <param name="accessToken"><see cref="AccessToken.Token"/></param>
+        /// <param name="accessToken"><see cref="AccessToken.Id"/></param>
         /// <param name="cNonce">SHA(AppID:AppPrivateKey:AppInstanceHost:Nonce)</param>
         /// <returns><see cref="AccessToken"/> or null if not confirmed</returns>
         AccessToken ConfirmToken(HttpRequest httpRequest, string appInstanceId, string accessToken, string cNonce);
@@ -39,7 +39,7 @@ namespace E5R.Framework.Security.Auth
         /// </summary>
         /// <param name="httpRequest">HTTP request context</param>
         /// <param name="appInstanceId"><see cref="AppInstance.Id"/></param>
-        /// <param name="sealedAccessToken"><see cref="AccessToken.Token"/></param>
+        /// <param name="sealedAccessToken"><see cref="AccessToken.Id"/></param>
         /// <param name="cNonce">SHA(<see cref="AppNonceOrder.Template"/>)</param>
         /// <returns><see cref="AccessToken"/> or null if no access</returns>
         bool GrantAccess(HttpRequest httpRequest, string appInstanceId, string sealedAccessToken, string cNonce);

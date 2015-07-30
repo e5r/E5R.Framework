@@ -16,12 +16,14 @@ namespace E5R.Framework.Security.Auth
         private readonly IDataStorage<AppInstance> _appInstanceStorage;
         private readonly IDataStorage<AccessToken> _accessTokenStorage;
         private readonly ILogger _logger;
+        private readonly IResourceEndPointService _resourceEndPointService;
 
-        public AuthenticationService(ILoggerFactory loggerFactory, IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
+        public AuthenticationService(ILoggerFactory loggerFactory, IResourceEndPointService resourceEndPointService, IDataStorage<AppInstance> appInstanceStorage, IDataStorage<AccessToken> accessTokenStorage)
         {
             var loggerName = GetType().FullName.Split('.').LastOrDefault();
 
-            _logger = loggerFactory.Create(loggerName);
+            _logger = loggerFactory.CreateLogger(loggerName);
+            _resourceEndPointService = resourceEndPointService;
             _appInstanceStorage = appInstanceStorage;
             _accessTokenStorage = accessTokenStorage;
         }
@@ -57,7 +59,7 @@ namespace E5R.Framework.Security.Auth
             if (sealedToken == null)
                 return null;
 
-            _logger.WriteInformation("SealedToken: {0}, NonceOrder: {1}", sealedToken.StringId, sealedToken.AppNonceOrder.Template);
+            _logger.LogInformation("SealedToken: {0}, NonceOrder: {1}", sealedToken.StringId, sealedToken.AppNonceOrder.Template);
 
             _accessTokenStorage.Remove(accessTokenFound);
 

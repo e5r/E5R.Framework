@@ -1,19 +1,18 @@
 ﻿{
-    "authors": [ "E5R Development Team" ],
-    "description": "Authentication and Authorization Net Utilities component for E5R Framework",
-    "version": "1.0.0-*",
-    "dependencies": {
-        "E5R.Framework.Security.Auth.Data": "",
-        "Microsoft.AspNet.Http.Core": "1.0.0-beta3"
-    },
-
-    "frameworks": {
-        "aspnet50": {},
-        "aspnetcore50": {
-            "dependencies": {
-                "System.Runtime": "4.0.20-beta-*",
-                "System.Net.Http": "4.0.0-beta-*"
-            }
-        }
+  "authors": [ "E5R Development Team" ],
+  "dependencies": {
+    "E5R.Framework.Security.Auth.Data": "",
+    "Microsoft.AspNet.Http.Core": "1.0.0-beta4"
+  },
+  "description": "Authentication and Authorization Net Utilities component for E5R Framework",
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Runtime": "4.0.20-beta-*",
+        "System.Net.Http": "4.0.0-beta-*"
+      }
     }
+  },
+  "version": "1.0.0-*"
 }

@@ -4,16 +4,15 @@
     "version": "1.0.0-*",
     "dependencies": {
         "E5R.Framework.Security.Auth.Data": "",
-        "Microsoft.Framework.DependencyInjection": "1.0.0-beta3",
-        "Microsoft.Framework.Logging":  "1.0.0-beta3"
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
+        "Microsoft.Framework.Logging.Interfaces":  "1.0.0-beta4"
     },
 
     "frameworks" : {
-        "aspnet50" : {},
-        "aspnetcore50" : { 
+        "dnx451" : {},
+        "dnxcore50" : { 
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-*",
-                "System.Dynamic.Runtime": "4.0.0-beta-*",
                 "Microsoft.CSharp": "4.0.0-beta-*"
             }
         }

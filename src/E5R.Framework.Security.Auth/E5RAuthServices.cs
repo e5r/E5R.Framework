@@ -2,25 +2,29 @@
 // Licensed under the MIT License. See LICENSE file for license information.
 
 ﻿using Microsoft.Framework.DependencyInjection;
-using System.Collections.Generic;
 
 namespace E5R.Framework.Security.Auth
 {
     public class E5RAuthServices
     {
-        public static IEnumerable<IServiceDescriptor> GetDefaultClientServices()
+        public static IServiceCollection GetDefaultClientServices()
         {
-            var describer = new ServiceDescriber();
+            var services = new ServiceCollection();
 
-            yield return describer.Singleton<IAuthenticationService, AuthenticationService>();
-            yield return describer.Singleton<IAuthorizationService, AuthorizationService>();
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IAuthorizationService, AuthorizationService>();
+
+            return services;
         }
 
-        public static IEnumerable<IServiceDescriptor> GetDefaultServerServices()
+        public static IServiceCollection GetDefaultServerServices()
         {
-            var describer = new ServiceDescriber();
+            var services = new ServiceCollection();
 
-            yield return describer.Singleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IResourceEndPointService, ResourceEndPointService>();
+
+            return services;
         }
     }
 }

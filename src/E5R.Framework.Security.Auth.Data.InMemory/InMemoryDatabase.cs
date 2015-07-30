@@ -26,7 +26,7 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
             if (_instance._dictionary.Count(where => where.Key == typeof(T)) != 1)
             {
                 var error = new KeyNotFoundException($"Database not found for type {typeof(T).FullName}.");
-                logger?.WriteError(error.Message, error);
+                logger?.LogError(error.Message, error);
                 throw error;
             }
 

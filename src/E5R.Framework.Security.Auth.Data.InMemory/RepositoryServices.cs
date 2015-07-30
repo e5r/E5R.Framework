@@ -9,12 +9,14 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
 {
     public static class RepositoryServices
     {
-        public static IEnumerable<IServiceDescriptor> GetRepositoryServices()
+        public static IServiceCollection GetRepositoryServices()
         {
-            var describer = new ServiceDescriber();
+            var services = new ServiceCollection();
 
-            yield return describer.Singleton<IDataStorage<AppInstance>, AppInstanceRepository>();
-            yield return describer.Singleton<IDataStorage<AccessToken>, AccessTokenRepository>();
+            services.AddSingleton<IDataStorage<AppInstance>, AppInstanceRepository>();
+            services.AddSingleton<IDataStorage<AccessToken>, AccessTokenRepository>();
+
+            return services;
         }
     }
 }

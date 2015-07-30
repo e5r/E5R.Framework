@@ -17,7 +17,7 @@ namespace E5R.Framework.Security.Auth.Data.InMemory
         {
             var loggerName = typeof(InMemoryDatabase).FullName.Split('.').LastOrDefault();
 
-            _logger = loggerFactory.Create(loggerName);
+            _logger = loggerFactory.CreateLogger(loggerName);
         }
 
         public IEnumerable<T> All

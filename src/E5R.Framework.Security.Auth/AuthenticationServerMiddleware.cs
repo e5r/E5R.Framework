@@ -33,7 +33,7 @@ namespace E5R.Framework.Security.Auth
             var loggerName = GetType().FullName.Split('.').LastOrDefault();
 
             _next = next;
-            _logger = loggerFactory.Create(loggerName);
+            _logger = loggerFactory.CreateLogger(loggerName);
             _path = path;
         }
 
@@ -48,7 +48,7 @@ namespace E5R.Framework.Security.Auth
 
         private async void ProcessAuthResponse(HttpContext context, HttpAuthResponse authResponse)
         {
-            _logger.WriteInformation($"ProccessAuthResponse, StatusCode: {authResponse.StatusCode}");
+            _logger.LogInformation($"ProccessAuthResponse, StatusCode: {authResponse.StatusCode}");
 
             var responseHeaders = context.Response.Headers;
             var requestHeaders = context.Request.Headers;
@@ -75,7 +75,7 @@ namespace E5R.Framework.Security.Auth
             // Body
             if (authResponse.Body == null)
             {
-                _logger.WriteInformation("Without body");
+                _logger.LogInformation("Without body");
                 return;
             }
 
@@ -84,7 +84,7 @@ namespace E5R.Framework.Security.Auth
 
             if (acceptContent.Count(x => string.Compare(x, JsonMimeContentType, true) == 0) > 0)
             {
-                _logger.WriteInformation("With a JSON body");
+                _logger.LogInformation("With a JSON body");
 
                 context.Response.ContentType = $"{JsonMimeContentType}; charset=utf-8";
 
@@ -93,7 +93,7 @@ namespace E5R.Framework.Security.Auth
 
             if (acceptContent.Count(x => string.Compare(x, XmlMimeContentType, true) == 0) > 0)
             {
-                _logger.WriteWarning("With a XML body");
+                _logger.LogWarning("With a XML body");
 
                 context.Response.ContentType = $"{XmlMimeContentType}; charset=utf-8";
 

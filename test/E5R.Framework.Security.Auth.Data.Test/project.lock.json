@@ -1,0 +1,519 @@
+{
+  "locked": false,
+  "version": -9998,
+  "projectFileDependencyGroups": {
+    "": [
+      "xunit >= 2.0.0-rc2-*",
+      "xunit.runner.aspnet >= 2.0.0-rc2-*",
+      "xunit.runner.visualstudio >= 2.0.0-rc2-*",
+      "Moq >= 4.2.1502.911",
+      "E5R.Framework.Security.Auth.Data "
+    ],
+    "DNX,Version=v4.5.1": []
+  },
+  "libraries": {
+    "Microsoft.Framework.Runtime.Interfaces/1.0.0-beta1": {
+      "serviceable": false,
+      "sha": "dYDxol26nJZG/f9uSdWw7wxoZWp+iemdXeJel8dbwuSbKLDx6oETpq5l36YTV5ghTnualLuHOWhAPJDTBNUMPg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/net45/Microsoft.Framework.Runtime.Interfaces.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/Microsoft.Framework.Runtime.Interfaces.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.IO": "4.0.10-beta-22231",
+            "System.Reflection": "4.0.10-beta-22231",
+            "System.Runtime": "4.0.20-beta-22231",
+            "System.Runtime.Extensions": "4.0.10-beta-22231",
+            "System.Threading.Tasks": "4.0.10-beta-22231",
+            "System.ComponentModel": "4.0.0-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/Microsoft.Framework.Runtime.Interfaces.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnetcore50/Microsoft.Framework.Runtime.Interfaces.dll"
+          ]
+        }
+      },
+      "files": [
+        "Microsoft.Framework.Runtime.Interfaces.1.0.0-beta1.nupkg",
+        "Microsoft.Framework.Runtime.Interfaces.1.0.0-beta1.nupkg.sha512",
+        "Microsoft.Framework.Runtime.Interfaces.nuspec",
+        "lib/aspnetcore50/Microsoft.Framework.Runtime.Interfaces.dll",
+        "lib/aspnetcore50/Microsoft.Framework.Runtime.Interfaces.xml",
+        "lib/net45/Microsoft.Framework.Runtime.Interfaces.dll",
+        "lib/net45/Microsoft.Framework.Runtime.Interfaces.xml"
+      ]
+    },
+    "Moq/4.2.1502.0911": {
+      "serviceable": false,
+      "sha": "Ng1jKw2jlwaBEh16+AeIfoS7jj9Hd9Zzf7OafgTsl9fIRv0bICqhAsmLaPHTsnpd4ReJyMMUyNGUGKpyp+mqkg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net40/Moq.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net40/Moq.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "Moq.4.2.1502.0911.nupkg",
+        "Moq.4.2.1502.0911.nupkg.sha512",
+        "Moq.nuspec",
+        "lib/net35/Moq.dll",
+        "lib/net35/Moq.xml",
+        "lib/net40/Moq.dll",
+        "lib/net40/Moq.xml",
+        "lib/sl4/Moq.Silverlight.dll",
+        "lib/sl4/Moq.Silverlight.xml"
+      ]
+    },
+    "xunit/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "XrPy1J5utfTmiPN/WSWhPoYq+nwd8ljMBdO5Ya6T2utsiirDhl0oX0GI477iTYtCHPFZRx784Ap4ow0yklY9Wg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "xunit.core": "[2.0.0-rc2-build2857]",
+            "xunit.assert": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "xunit.core": "[2.0.0-rc2-build2857]",
+            "xunit.assert": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "xunit.2.0.0-rc2-build2857.nupkg",
+        "xunit.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.nuspec"
+      ]
+    },
+    "xunit.abstractions/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "FiuvxLI17Sx1zMN6HEt+mjtIdJVDca5rRrusWmjZLPtCFg9QNkQvjROK+9M/x6FFckcTv/VxFvhQWoJyIe2jUg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net35/xunit.abstractions.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net35/xunit.abstractions.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.abstractions.2.0.0-rc2-build2857.nupkg",
+        "xunit.abstractions.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.abstractions.nuspec",
+        "lib/net35/xunit.abstractions.dll",
+        "lib/net35/xunit.abstractions.xml",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.xml"
+      ]
+    },
+    "xunit.assert/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "Dj7fkr4OFH8l9yx3mej2DD3I8O4VOIU9lWsW5flLnQPjAmbpf+UkzresfdqIIhwA2I4UzGwzC9qPzBU6BtKQLA==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.assert.2.0.0-rc2-build2857.nupkg",
+        "xunit.assert.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.assert.nuspec",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.dll",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.pdb",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.assert.xml"
+      ]
+    },
+    "xunit.core/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "4BU9Ev9Xs9dUZtVXurhgmiNPXoBP5F6k4MjD+a42Su0rWJjX1skmymswVXl6bWtW1NoPbhiypNeR9sVLsXJ/rA==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "xunit.extensibility.core": "[2.0.0-rc2-build2857]",
+            "xunit.extensibility.execution": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "xunit.extensibility.core": "[2.0.0-rc2-build2857]",
+            "xunit.extensibility.execution": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "xunit.core.2.0.0-rc2-build2857.nupkg",
+        "xunit.core.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.core.nuspec",
+        "build/monoandroid/xunit.core.props",
+        "build/monoandroid/xunit.execution.MonoAndroid.dll",
+        "build/monotouch/xunit.core.props",
+        "build/monotouch/xunit.execution.MonoTouch.dll",
+        "build/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.props",
+        "build/portable-win81+wpa81/xunit.core.props",
+        "build/portable-win81+wpa81/xunit.core.targets",
+        "build/portable-win81+wpa81/xunit.execution.universal.dll",
+        "build/portable-win81+wpa81/xunit.execution.universal.pri",
+        "build/win8/xunit.core.props",
+        "build/win8/xunit.core.targets",
+        "build/win8/xunit.execution.win8.dll",
+        "build/wp8/xunit.core.props",
+        "build/wp8/xunit.core.targets",
+        "build/wp8/xunit.execution.wp8.dll",
+        "build/Xamarin.iOS/xunit.core.props",
+        "build/Xamarin.iOS/xunit.execution.iOS-Universal.dll",
+        "build/_Desktop/xunit.execution.desktop.dll"
+      ]
+    },
+    "xunit.extensibility.core/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "kiMA8p32arsFoEOUbL1G/DkelBNTUiGt1yjXhkzR29hCMXr8b8MM5zdJRNzV96vcQRVBXca8AaD65CPILRv9Rg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "xunit.abstractions": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "xunit.abstractions": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.extensibility.core.2.0.0-rc2-build2857.nupkg",
+        "xunit.extensibility.core.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.extensibility.core.nuspec",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.dll.tdnet",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.pdb",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.core.xml",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.runner.tdnet.dll",
+        "lib/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.runner.utility.desktop.dll"
+      ]
+    },
+    "xunit.extensibility.execution/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "W/pziepKCKKqrS+kSpzPZxfzyeLYhVrqdNSyl9jIAAO4YWG5uRbBNRDOMZnaIp4wV5LhnMcZaQAmb6ROu8NdHg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "xunit.extensibility.core": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [
+            "Microsoft.CSharp",
+            "mscorlib",
+            "System",
+            "System.Core",
+            "System.Reflection",
+            "System.Runtime",
+            "System.Threading.Tasks"
+          ],
+          "runtimeAssemblies": [
+            "lib/aspnet50/xunit.execution.AspNet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnet50/xunit.execution.AspNet.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "xunit.extensibility.core": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/xunit.execution.AspNet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnetcore50/xunit.execution.AspNet.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.extensibility.execution.2.0.0-rc2-build2857.nupkg",
+        "xunit.extensibility.execution.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.extensibility.execution.nuspec",
+        "lib/aspnet50/xunit.execution.AspNet.dll",
+        "lib/aspnet50/xunit.execution.AspNet.pdb",
+        "lib/aspnet50/xunit.execution.AspNet.xml",
+        "lib/aspnetcore50/xunit.execution.AspNet.dll",
+        "lib/aspnetcore50/xunit.execution.AspNet.pdb",
+        "lib/aspnetcore50/xunit.execution.AspNet.xml",
+        "lib/monoandroid/xunit.execution.MonoAndroid.dll",
+        "lib/monoandroid/xunit.execution.MonoAndroid.pdb",
+        "lib/monoandroid/xunit.execution.MonoAndroid.xml",
+        "lib/monotouch/xunit.execution.MonoTouch.dll",
+        "lib/monotouch/xunit.execution.MonoTouch.pdb",
+        "lib/monotouch/xunit.execution.MonoTouch.xml",
+        "lib/net45/xunit.execution.desktop.dll",
+        "lib/net45/xunit.execution.desktop.pdb",
+        "lib/net45/xunit.execution.desktop.xml",
+        "lib/portable-wpa81+win81/xunit.execution.universal.dll",
+        "lib/portable-wpa81+win81/xunit.execution.universal.pdb",
+        "lib/portable-wpa81+win81/xunit.execution.universal.pri",
+        "lib/portable-wpa81+win81/xunit.execution.universal.xml",
+        "lib/win8/xunit.execution.win8.dll",
+        "lib/win8/xunit.execution.win8.pdb",
+        "lib/win8/xunit.execution.win8.xml",
+        "lib/wp8/xunit.execution.wp8.dll",
+        "lib/wp8/xunit.execution.wp8.pdb",
+        "lib/wp8/xunit.execution.wp8.xml",
+        "lib/Xamarin.iOS/xunit.execution.iOS-Universal.dll",
+        "lib/Xamarin.iOS/xunit.execution.iOS-Universal.pdb",
+        "lib/Xamarin.iOS/xunit.execution.iOS-Universal.xml"
+      ]
+    },
+    "xunit.runner.aspnet/2.0.0-rc2-build50": {
+      "serviceable": false,
+      "sha": "o7jQkEHi0FvbL/5IhhZS0tEttZT1N6RYnhW0OTAp44vwvLPekh3wKELbjEojQDs35C+Ml79pqVN/SRLDF8zcUQ==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "Microsoft.Framework.Runtime.Interfaces": "1.0.0-beta1",
+            "xunit.runner.utility": "2.0.0-rc2-build2857"
+          },
+          "frameworkAssemblies": [
+            "System.Runtime",
+            "System.Xml.Linq",
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/aspnet50/xunit.runner.aspnet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnet50/xunit.runner.aspnet.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "Microsoft.Framework.Runtime.Interfaces": "1.0.0-beta1",
+            "xunit.runner.utility": "2.0.0-rc2-build2857",
+            "System.Collections.Concurrent": "4.0.10-beta-22416",
+            "System.Console": "4.0.0-beta-22416",
+            "System.Diagnostics.Tools": "4.0.0-beta-22416",
+            "System.IO.FileSystem": "4.0.0-beta-22416",
+            "System.Linq": "4.0.0-beta-22416",
+            "System.Security.Cryptography.Hashing.Algorithms": "4.0.0-beta-22416",
+            "System.Text.RegularExpressions": "4.0.10-beta-22416",
+            "System.Threading": "4.0.0-beta-22416",
+            "System.Xml.XDocument": "4.0.0-beta-22416"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/xunit.runner.aspnet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnetcore50/xunit.runner.aspnet.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.runner.aspnet.2.0.0-rc2-build50.nupkg",
+        "xunit.runner.aspnet.2.0.0-rc2-build50.nupkg.sha512",
+        "xunit.runner.aspnet.nuspec",
+        "lib/aspnet50/xunit.runner.aspnet.dll",
+        "lib/aspnet50/xunit.runner.aspnet.xml",
+        "lib/aspnetcore50/xunit.runner.aspnet.dll",
+        "lib/aspnetcore50/xunit.runner.aspnet.xml"
+      ]
+    },
+    "xunit.runner.utility/2.0.0-rc2-build2857": {
+      "serviceable": false,
+      "sha": "rRMKc7i28F31jxRLlNmc3IlYojfmZENa3JM4QsOD5KaOKsyJHZ7uBnivZ3sVjUifKFgL9Ju7omI8mtIbyqnm4g==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "xunit.abstractions": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [
+            "Microsoft.CSharp",
+            "mscorlib",
+            "System",
+            "System.Core",
+            "System.Runtime",
+            "System.Web",
+            "System.XML"
+          ],
+          "runtimeAssemblies": [
+            "lib/aspnet50/xunit.runner.utility.AspNet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnet50/xunit.runner.utility.AspNet.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "xunit.abstractions": "[2.0.0-rc2-build2857]"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/xunit.runner.utility.AspNet.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnetcore50/xunit.runner.utility.AspNet.dll"
+          ]
+        }
+      },
+      "files": [
+        "xunit.runner.utility.2.0.0-rc2-build2857.nupkg",
+        "xunit.runner.utility.2.0.0-rc2-build2857.nupkg.sha512",
+        "xunit.runner.utility.nuspec",
+        "lib/aspnet50/xunit.runner.utility.AspNet.dll",
+        "lib/aspnet50/xunit.runner.utility.AspNet.pdb",
+        "lib/aspnet50/xunit.runner.utility.AspNet.xml",
+        "lib/aspnetcore50/xunit.runner.utility.AspNet.dll",
+        "lib/aspnetcore50/xunit.runner.utility.AspNet.pdb",
+        "lib/aspnetcore50/xunit.runner.utility.AspNet.xml",
+        "lib/monoandroid/xunit.runner.utility.MonoAndroid.dll",
+        "lib/monoandroid/xunit.runner.utility.MonoAndroid.pdb",
+        "lib/monoandroid/xunit.runner.utility.MonoAndroid.xml",
+        "lib/monotouch/xunit.runner.utility.MonoTouch.dll",
+        "lib/monotouch/xunit.runner.utility.MonoTouch.pdb",
+        "lib/monotouch/xunit.runner.utility.MonoTouch.xml",
+        "lib/net35/xunit.runner.utility.desktop.dll",
+        "lib/net35/xunit.runner.utility.desktop.pdb",
+        "lib/net35/xunit.runner.utility.desktop.xml",
+        "lib/portable-wpa81+win81/xunit.runner.utility.universal.dll",
+        "lib/portable-wpa81+win81/xunit.runner.utility.universal.pdb",
+        "lib/portable-wpa81+win81/xunit.runner.utility.universal.pri",
+        "lib/portable-wpa81+win81/xunit.runner.utility.universal.xml",
+        "lib/win8/xunit.runner.utility.win8.dll",
+        "lib/win8/xunit.runner.utility.win8.pdb",
+        "lib/win8/xunit.runner.utility.win8.xml",
+        "lib/wp8/xunit.runner.utility.wp8.dll",
+        "lib/wp8/xunit.runner.utility.wp8.pdb",
+        "lib/wp8/xunit.runner.utility.wp8.xml",
+        "lib/Xamarin.iOS/xunit.runner.utility.iOS-Universal.dll",
+        "lib/Xamarin.iOS/xunit.runner.utility.iOS-Universal.pdb",
+        "lib/Xamarin.iOS/xunit.runner.utility.iOS-Universal.xml"
+      ]
+    },
+    "xunit.runner.visualstudio/2.0.0-rc2-build1043": {
+      "serviceable": false,
+      "sha": "sCXC/z8kAZyJx3wcljh3L3ktgwhT3xEdSlOmLmHApPHRHMpavvurXh9fI7aOpBU8Uu898fIJfCmwTJfKtLlgrw==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "xunit.runner.visualstudio.2.0.0-rc2-build1043.nupkg",
+        "xunit.runner.visualstudio.2.0.0-rc2-build1043.nupkg.sha512",
+        "xunit.runner.visualstudio.nuspec",
+        "build/net20/xunit.runner.visualstudio.props",
+        "build/portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid/xunit.runner.visualstudio.props",
+        "build/win8/xunit.runner.utility.win8.dll",
+        "build/win8/xunit.runner.visualstudio.props",
+        "build/win8/xunit.runner.visualstudio.targets",
+        "build/win8/xunit.runner.visualstudio.win8.dll",
+        "build/wpa81/xunit.runner.utility.universal.dll",
+        "build/wpa81/xunit.runner.utility.universal.pri",
+        "build/wpa81/xunit.runner.visualstudio.props",
+        "build/wpa81/xunit.runner.visualstudio.targets",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.dll",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.pri",
+        "build/_common/xunit.abstractions.dll",
+        "build/_common/xunit.runner.utility.desktop.dll",
+        "build/_common/xunit.runner.visualstudio.testadapter.dll"
+      ]
+    }
+  }
+}

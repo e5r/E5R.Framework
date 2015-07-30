@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Web", "sample\E5R.Framework.Security.Auth.Web\E5R.Framework.Security.Auth.Web.kproj", "{7B27E284-E04B-482A-972F-1F23C8F80A79}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Web", "sample\E5R.Framework.Security.Auth.Web\E5R.Framework.Security.Auth.Web.xproj", "{7B27E284-E04B-482A-972F-1F23C8F80A79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{0D04485E-DDD3-41C5-BDBD-E30B91CC4884}"
 EndProject
@@ -27,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D30F36C0-E36
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FB48C03D-D86F-4756-A861-A9F156923617}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth", "src\E5R.Framework.Security.Auth\E5R.Framework.Security.Auth.kproj", "{7B836CD9-6468-4B46-919A-91E21D917307}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth", "src\E5R.Framework.Security.Auth\E5R.Framework.Security.Auth.xproj", "{7B836CD9-6468-4B46-919A-91E21D917307}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Test", "test\E5R.Framework.Security.Auth.Test\E5R.Framework.Security.Auth.Test.kproj", "{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Test", "test\E5R.Framework.Security.Auth.Test\E5R.Framework.Security.Auth.Test.xproj", "{A235E3B4-221B-4AAE-97A1-2BDD8C4A0DAF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthenticationServer", "sample\AuthenticationServer\AuthenticationServer.kproj", "{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthenticationServer", "sample\AuthenticationServer\AuthenticationServer.xproj", "{93367FB1-4F2C-491A-8902-7FA0FF87B2BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".e5r", ".e5r", "{3B809C45-7EB3-4037-9238-22169D24988A}"
 	ProjectSection(SolutionItems) = preProject
@@ -39,13 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".e5r", ".e5r", "{3B809C45-7
 		.e5r\version = .e5r\version
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data", "src\E5R.Framework.Security.Auth.Data\E5R.Framework.Security.Auth.Data.kproj", "{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data", "src\E5R.Framework.Security.Auth.Data\E5R.Framework.Security.Auth.Data.xproj", "{C7B89C97-2E37-42C2-81E9-1F83F314A9E8}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.NetUtils", "src\E5R.Framework.Security.Auth.NetUtils\E5R.Framework.Security.Auth.NetUtils.kproj", "{4CB01E7E-50EC-4578-AF8C-61CA37091521}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.NetUtils", "src\E5R.Framework.Security.Auth.NetUtils\E5R.Framework.Security.Auth.NetUtils.xproj", "{4CB01E7E-50EC-4578-AF8C-61CA37091521}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data.Test", "test\E5R.Framework.Security.Auth.Data.Test\E5R.Framework.Security.Auth.Data.Test.kproj", "{2061D49F-04FF-421A-86A6-E655B93EDD82}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data.Test", "test\E5R.Framework.Security.Auth.Data.Test\E5R.Framework.Security.Auth.Data.Test.xproj", "{2061D49F-04FF-421A-86A6-E655B93EDD82}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data.InMemory", "src\E5R.Framework.Security.Auth.Data.InMemory\E5R.Framework.Security.Auth.Data.InMemory.kproj", "{5ECBEFFC-D7EA-434F-9F27-852BC7E72C37}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "E5R.Framework.Security.Auth.Data.InMemory", "src\E5R.Framework.Security.Auth.Data.InMemory\E5R.Framework.Security.Auth.Data.InMemory.xproj", "{5ECBEFFC-D7EA-434F-9F27-852BC7E72C37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

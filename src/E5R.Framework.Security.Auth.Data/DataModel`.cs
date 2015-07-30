@@ -3,7 +3,7 @@
 
 using System;
 
-#if ASPNETCORE50
+#if DNXCORE50
 using System.Reflection;
 #endif
 
